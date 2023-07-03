@@ -1,0 +1,6 @@
+source_root_path: src      # Path to the directory at the root of the source files, relative to the directory containing this file
+
+source_paths:              # Paths to source files, relative to source_root_path
+- arpack.f90
+- blas.f90
+- lapack.f90
