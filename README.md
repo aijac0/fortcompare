@@ -1,5 +1,5 @@
 # FortCompare
-A tool to mitigate the amount of behavior changed between two implementations of the same Fortran function/subroutine.
+A tool to mitigate the amount of behavior changed between two implementations of the same Fortran codebase.
 Still a work in progress.
 
 ## Usage
