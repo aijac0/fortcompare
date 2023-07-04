@@ -1,4 +1,3 @@
-import sys
 import subprocess
 from information.program_units import parse_programunit
 
