@@ -1,7 +1,6 @@
 import sys
 from initial import initialize
-from information import gather_information
-
+from static_analysis import StaticAnalyzer
 
 if __name__ == "__main__":
 
@@ -12,10 +11,11 @@ if __name__ == "__main__":
         raise Exception("Usage: python3 fortcompare.py [specifications-file]")
 
     # Initialize the specifications dictionary
-    specs = initialize(yaml_filepath)
+    specifications = initialize(yaml_filepath)
     
-    # Gather information from source files
-    information = gather_information(specs)
+    # Run the static analysis phase
+    static_analyzer = StaticAnalyzer(specifications)
+    information = static_analyzer.analyze()
         
     # Print parsed program units
     for implem_name, implem_info in information.items():
