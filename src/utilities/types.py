@@ -1,3 +1,12 @@
+class Specifications:
+    """
+    Class containing information about paths to implementations and the files it contains
+    """
+    def __init__(self):
+        self.rootpaths : list[str] = None
+        self.filepaths : list[list[str]] = None
+
+
 class Implementation:
     """
     Class that represents the abstract structure of a Fortran program implementation.

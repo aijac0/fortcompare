@@ -12,8 +12,8 @@ class StaticAnalyzer:
         """
         
         # Parsing phase
-        rootpaths = [self.specifications["start_path"] + '/' + implem["root_path"] for implem in self.specifications["implementations"]]
-        filepaths = [self.specifications["source_paths"] for i in range(len(rootpaths))]
+        rootpaths = self.specifications.rootpaths
+        filepaths = self.specifications.filepaths
         parser = Parser(rootpaths, filepaths)
         implementations = parser.parse()
         

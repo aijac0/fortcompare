@@ -1,4 +1,5 @@
 from yaml import safe_load
+from utilities.types import Specifications
 
 def initialize(specs_filepath):
     """
@@ -9,12 +10,16 @@ def initialize(specs_filepath):
     
     # Read specifications file
     f = open(specs_filepath, "r")
-    specs = safe_load(f)
+    yaml_contents = safe_load(f)
     f.close()
     
-    # Add entry containing filepath to specifications file
+    # Get path to directory containing specifications file
     tokens = specs_filepath.split('/')
     specs_directory = "." if len(tokens) == 1 else "/".join(tokens[:-1])
-    specs["start_path"] = specs_directory
+    
+    # Create object representing specifications file
+    specs = Specifications()
+    specs.rootpaths = [specs_directory + '/' + implem["rootpath"] for implem in yaml_contents]
+    specs.filepaths = [implem["filepaths"] for implem in yaml_contents]
     
     return specs

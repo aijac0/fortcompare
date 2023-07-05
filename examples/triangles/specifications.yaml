@@ -1,11 +1,12 @@
-implementations:                                      # Information about implementations
+# - rootpath : [Path to the directory containing the source files for an implementation, relative to the path containing this .yaml file]
+#   filepaths : [Path to the source files for an implementation, relative to its rootpath] 
 
-# example :
-#   rootpath : [Path to a source directory containing for an implementation of source_filepaths]
+- rootpath : implem1
+  filepaths :
+  - area.f90
+  - triangles.f90
 
-  implem1 :
-    rootpath : implem1
-
-  implem2 :
-    rootpath : implem2
-
+- rootpath : implem2
+  filepaths :
+  - area.f90
+  - triangles.f90
