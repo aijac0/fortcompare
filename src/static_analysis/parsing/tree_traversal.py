@@ -1,6 +1,5 @@
-import sys
 import subprocess
-from information.program_units import parse_programunit
+from static_analysis.parsing.program_units import parse_programunit
 
 class TreeNode:
 

@@ -1,32 +1,35 @@
 import sys
-from initial.read_specifications import read_specifications
-from information.tree_traversal import ParseTree
-
+from initial import initialize
+from static_analysis import StaticAnalyzer
 
 if __name__ == "__main__":
 
     # Get the .yaml file to parse from the command line arguments
     if len(sys.argv) == 2:
         yaml_filepath = sys.argv[1]
-        tokens = yaml_filepath.split('/')
-        yaml_directory = "." if len(tokens) == 1 else "/".join(tokens[:-1])
     else:
         raise Exception("Usage: python3 fortcompare.py [specifications-file]")
 
-    # Read in the dictionary representation of the input .yaml file
-    specs = read_specifications(yaml_filepath)
-
-    # Get a list of the relative paths to source files
-    sources = []
-    for path in specs["source_paths"]:
-        sources.append(yaml_directory + '/' + specs["source_root_path"] + '/' + path)
-
-    # Get a list of the program units in all source files
-    program_units = []
-    for source in sources:
-        tree = ParseTree(source)
-        program_units.extend(tree.parse())
+    # Initialize the specifications dictionary
+    specifications = initialize(yaml_filepath)
+    
+    # Run the static analysis phase
+    static_analyzer = StaticAnalyzer(specifications)
+    implementations = static_analyzer.analyze()
         
-    # Print parsed program units
-    for program_unit in program_units:
-        print(str(program_unit))
+    # Output result
+    for implem in implementations:
+        for src in implem.sources:
+            for punit in src.programunits:
+                print("name : " + punit.name)
+                print("type : " + punit.type)
+                print("referenced_module_names: " + ("None" if not punit.referenced_module_names else ""))
+                for name in punit.referenced_module_names:
+                    print("\t" + name)
+                print("referenced_names: " + ("None" if not punit.referenced_names else ""))
+                for name in punit.referenced_names:
+                    print("\t" + name)
+                print("declared_names: " + ("None" if not punit.declared_names else ""))
+                for name in punit.declared_names:
+                    print("\t" + name)
+                print()
