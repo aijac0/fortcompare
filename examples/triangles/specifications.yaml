@@ -1,0 +1,11 @@
+implementations:                                      # Information about implementations
+
+# example :
+#   rootpath : [Path to a source directory containing for an implementation of source_filepaths]
+
+  implem1 :
+    rootpath : implem1
+
+  implem2 :
+    rootpath : implem2
+
