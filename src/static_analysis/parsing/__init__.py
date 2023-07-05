@@ -1,45 +1,53 @@
+from utilities.types import Implementation, SourceFile
 from static_analysis.parsing.tree_traversal import ParseTree
 
 class Parser:
     
-    def __init__(self, specifications):
-        self.specifications = specifications
+    def __init__(self, rootpaths : list[str], filepaths : list[list[str]]):
+        """
+        Initialize Parser object.
+        :rootpaths: List of filepaths to each implementation source directory.
+        :filepaths: List of lists of filepaths to each implementation source file, relative to its rootpath.
+        """
+        self.rootpaths = rootpaths
+        self.filepaths = filepaths
     
-    def parse(self):
+    def parse(self) -> list[Implementation]:
         """
-        Parsing phase.
+        Parse the abstract structure of each implementation from the Flang parse tree of each of its source files.
+        :rvalue: List of objects representing each implementation.
         """
         
-        # Initialize the dictionary to contain information
-        info = dict()
+        # List of implementations to return
+        implems = []
         
-        # Gather the information contained in each implementation
-        for implem in self.specifications["implementations"]:
+        # Iterate over the indices associated with each implementation
+        for implem_index in range(len(self.rootpaths)):
             
-            # Unpack specifications about implementation
-            implem_name = implem["name"]
-            implem_root_path = implem["root_path"]
+            # Unpack rootpath and filepaths for implementation
+            implem_rootpath = self.rootpaths[implem_index]
+            implem_filepaths = self.filepaths[implem_index]
             
-            # Add new entry to information dictionary
-            info[implem_name] = dict()
-            
-            # Gather the information contained in each source file
-            for source_path in self.specifications["source_paths"]:
+            # Create new object representing implementation
+            implem = Implementation()
+            implems.append(implem)
+            implem.filepath = implem_rootpath
+
+            # Iterate over each filepath
+            for filepath in implem_filepaths:
                 
-                # Add new entry to information dictionary
-                info[implem_name][source_path] = dict()
+                # Get the filepath to the source file
+                source_filepath = implem_rootpath + '/' + filepath
                 
-                # Get the full path to source file
-                filepath = self.specifications["start_path"] + '/' + implem_root_path + '/' + source_path
+                # Create new object representing source file
+                source = SourceFile()
+                implem.sources.append(source)
+                source.filepath = source_filepath
                 
                 # Generate the parse tree for source file
-                tree = ParseTree(filepath)
+                tree = ParseTree(source_filepath)
                 
                 # Parse information about the program units in the source file
-                program_units = tree.parse()
-                
-                # Add an entry to the information dictionary for each program unit
-                for program_unit in program_units:
-                    info[implem_name][source_path][program_unit.name] = program_unit
+                source.programunits = tree.parse()
                     
-        return info
+        return implems

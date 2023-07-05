@@ -1,28 +1,4 @@
-class ProgramUnit:
-    
-    def __init__(self):
-        self.name = None                                              
-        self.type = None                                              # "module", "function", or "subroutine"
-        self.referenced_modules = set()
-        self.declared_variables = set()
-        self.referenced_variables = set()
-        
-    def __str__(self):
-        out_str = ""
-        out_str += "ProgramUnit:\n"
-        out_str += "\tName: " + self.name + "\n"
-        out_str += "\tType: " + self.type + "\n"
-        out_str += "\tReferenced Modules: " + ("\n" if self.referenced_modules else "None\n")
-        for referenced_module in self.referenced_modules:
-            out_str += "\t\t" + referenced_module + "\n"
-        out_str += "\tDeclared Variables: " + ("\n" if self.declared_variables else "None\n")
-        for declared_variable in self.declared_variables:
-            out_str += "\t\t" + declared_variable + "\n"
-        out_str += "\tReferenced Variables: " + ("\n" if self.referenced_variables else "None\n")
-        for referenced_variable in self.referenced_variables:
-            out_str += "\t\t" + referenced_variable + "\n"
-        return out_str
-        
+from utilities.types import ProgramUnit
 
 def parse_programunit(tree):
     """
@@ -81,7 +57,7 @@ def parse_specificationpart(tree, obj):
     for usestmt in usestmts:
         namestmt = usestmt.step("Name", exception_handling=True)
         name = namestmt.leaf().value[1:-1]
-        obj.referenced_modules.add(name)
+        obj.referenced_module_names.add(name)
     
     # Get nodes that represent entity declarations
     entitydecls = tree.walk("EntityDecl")
@@ -90,7 +66,7 @@ def parse_specificationpart(tree, obj):
     for entitydecl in entitydecls:
         namestmt = entitydecl.step("Name", exception_handling=True)
         name = namestmt.leaf().value[1:-1]
-        obj.declared_variables.add(name)
+        obj.declared_names.add(name)
     
     # Get nodes that represent data references
     datarefs = tree.walk("DataRef")
@@ -99,7 +75,7 @@ def parse_specificationpart(tree, obj):
     for dataref in datarefs:
         namestmt = dataref.step("Name", exception_handling=True)
         name = namestmt.leaf().value[1:-1]
-        obj.referenced_variables.add(name)
+        obj.referenced_names.add(name)
 
 
 def parse_executionpart(tree, obj):
@@ -120,4 +96,4 @@ def parse_executionpart(tree, obj):
     for dataref in datarefs:
         namestmt = dataref.step("Name", exception_handling=True)
         name = namestmt.leaf().value[1:-1]
-        obj.referenced_variables.add(name)
+        obj.referenced_names.add(name)

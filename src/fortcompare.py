@@ -15,10 +15,21 @@ if __name__ == "__main__":
     
     # Run the static analysis phase
     static_analyzer = StaticAnalyzer(specifications)
-    information = static_analyzer.analyze()
+    implementations = static_analyzer.analyze()
         
-    # Print parsed program units
-    for implem_name, implem_info in information.items():
-        for source_path, source_info in implem_info.items():
-            for programunit_name, programunit in source_info.items():
-                print(str(programunit))
+    # Output result
+    for implem in implementations:
+        for src in implem.sources:
+            for punit in src.programunits:
+                print("name : " + punit.name)
+                print("type : " + punit.type)
+                print("referenced_module_names: " + ("None" if not punit.referenced_module_names else ""))
+                for name in punit.referenced_module_names:
+                    print("\t" + name)
+                print("referenced_names: " + ("None" if not punit.referenced_names else ""))
+                for name in punit.referenced_names:
+                    print("\t" + name)
+                print("declared_names: " + ("None" if not punit.declared_names else ""))
+                for name in punit.declared_names:
+                    print("\t" + name)
+                print()
