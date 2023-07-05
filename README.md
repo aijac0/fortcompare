@@ -21,16 +21,16 @@
 #### Parsing
 * This phase is responsible for finding the structure of each implementation that can be interpreted from its individual source files.
 * Input:
-* - TODO
+  - TODO
 * Output:
-* - TODO
+  - TODO
 
 #### Resolution
 * This phase is responsible for finding the structure of each implementation as a whole.
 * Input:
-* - TODO
+  - TODO
 * Output:
-* - TODO
+  - TODO
 
 ### Dynamic Analysis
 * The dynamic analyzer is responsible for getting empirical examples of the state of all variables referenced in each subprogram prior to its execution.
