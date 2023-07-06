@@ -1,5 +1,6 @@
 # include <iostream>
-# include "initialization/initialization.h"
+# include "data/filepathdata.h"
+# include "phases/initialization/initialization.h"
 
 int main(int argc, char **argv)
 {
@@ -15,7 +16,7 @@ int main(int argc, char **argv)
     char **c_filepaths = argv + 1;
 
     // Initialization phase
-    const Initialization initialization_data = Initialization(n_filepaths, c_filepaths);
+    FilePathData *fpath_data = Initialization::run(n_filepaths, c_filepaths);
 
     // Static analysis phase
     // >>> TODO
