@@ -15,8 +15,7 @@ int main(int argc, char **argv)
     char **c_filepaths = argv + 1;
 
     // Initialization phase
-    Initializer initializer = Initializer(n_filepaths, c_filepaths);
-    InitializationData initialization_data = initializer.run();
+    const Initialization initialization_data = Initialization(n_filepaths, c_filepaths);
 
     // Static analysis phase
     // >>> TODO
