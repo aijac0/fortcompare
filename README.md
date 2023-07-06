@@ -3,8 +3,8 @@
 * Still a work in progress.
 
 ## Usage
-1. Create a .yaml file similar to the one given in examples/arpack
-2. Call "python3 src/fortcompare.py [yaml-file]"
+1. Build with boost library
+2. ./frtt [source_directory_1] [source_directory_2] ... [source_directory_n]
 
 ## Overview
 * FRTT automagically generates a test for each similar subprogram[^1]. Each test will retrieve a known input state[^2], execute both subprogram implementations, and compare the output states[^3] of each.
@@ -12,11 +12,18 @@
 
 ### Static Analysis
 * This phase is responsible for getting an abstraction of the structure of each implementation, such that its substructures can be compared to another implementation.
-* This phase has two subphases: parsing and resolution.
+* This phase has two subphases: initialization, parsing and resolution.
 * Input: 
   - TODO
 * Output: 
   - TODO
+
+#### Initialization
+* This phase is responsible for getting the paths to the source files in each implementation.
+* Input:
+  - Implementation source directory paths
+* Output:
+  - Implementation source file paths
 
 #### Parsing
 * This phase is responsible for finding the structure of each implementation that can be interpreted from its individual source files.
