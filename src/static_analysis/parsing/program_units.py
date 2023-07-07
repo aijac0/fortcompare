@@ -1,4 +1,4 @@
-from utilities.types import ProgramUnit
+from utilities.types import ProgramUnit, Variable
 
 def parse_programunit(tree):
     """
@@ -44,6 +44,7 @@ def parse_specificationpart(tree, obj):
     Parse a tree that represents the specification part of a program unit.
     Store information gathered in a ProgramUnit object.
     :tree: Head of tree with value "SpecificationPart".
+    :obj: Object representation of the programunit being parsed.
     """
 
     # Make sure that tree has value "SpecificationPart"
@@ -62,12 +63,16 @@ def parse_specificationpart(tree, obj):
     # Get nodes that represent entity declarations
     entitydecls = tree.walk("EntityDecl")
     
-    # Add the name of each data reference as a variable reference
+    # Add the name of each entity declaration as a variable declaration
     for entitydecl in entitydecls:
         namestmt = entitydecl.step("Name", exception_handling=True)
         name = namestmt.leaf().value[1:-1]
-        obj.declared_names.add(name)
-    
+        if name not in obj.declared_names:
+            var = Variable()
+            var.name = name
+            obj.declared_variables.append(var)
+            obj.declared_names.add(name)    
+            
     # Get nodes that represent data references
     datarefs = tree.walk("DataRef")
     
@@ -83,6 +88,7 @@ def parse_executionpart(tree, obj):
     Parse a tree that represents the execution part of a program unit.
     Store information gathered in a ProgramUnit object.
     :tree: Head of tree with value "ExecutionPart".
+    :obj: Object representation of the programunit being parsed.
     """
     
     # Make sure that tree has value "ExecutionPart"
