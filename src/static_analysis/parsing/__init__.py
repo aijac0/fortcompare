@@ -12,7 +12,7 @@ class Parser:
         self.rootpaths = rootpaths
         self.filepaths = filepaths
     
-    def parse(self) -> list[Implementation]:
+    def run(self) -> list[Implementation]:
         """
         Parse the abstract structure of each implementation from the Flang parse tree of each of its source files.
         :rvalue: List of objects representing each implementation.
