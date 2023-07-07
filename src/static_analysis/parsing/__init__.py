@@ -41,8 +41,8 @@ class Parser:
                 
                 # Create new object representing source file
                 source = SourceFile()
-                implem.sources.append(source)
-                source.filepath = source_filepath
+                implem.sources[filepath] = source
+                source.filepath = filepath
                 
                 # Generate the parse tree for source file
                 tree = ParseTree(source_filepath)

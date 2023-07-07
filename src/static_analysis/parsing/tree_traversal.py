@@ -199,14 +199,21 @@ class ParseTree:
     def parse(self):
         """
         Get a list of ProgramUnit objects containing information about each program unit (module, function, subroutine) in parse tree
-        :rvalue: List of ProgramUnits
+        :rvalue: Dictionary mapping the name of each program unit to its object representation
         """
+    
+        # Dictionary to return
+        rvalue = dict()
     
         # Get a list of the subtrees representing a program unit
         subtrees = self.head.walk("ProgramUnit")
         
         # Get the ProgramUnit representation of each subtree
-        return [parse_programunit(subtree) for subtree in subtrees]
+        for subtree in subtrees:
+            programunit = parse_programunit(subtree)
+            rvalue[programunit.name] = programunit
+
+        return rvalue
 
 
     @classmethod
