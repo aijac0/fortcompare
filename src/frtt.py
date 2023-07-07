@@ -19,8 +19,8 @@ if __name__ == "__main__":
         
     # Output result
     for implem in implementations:
-        for src in implem.sources.values():
-            for punit in src.programunits.values():
+        for src in implem.sources:
+            for punit in src.programunits:
                 print("name : " + punit.name)
                 print("type : " + punit.type)
                 print("referenced_module_names: " + ("None" if not punit.referenced_module_names else ""))
