@@ -202,19 +202,11 @@ class ParseTree:
         :rvalue: Dictionary mapping the name of each program unit to its object representation
         """
     
-        # Dictionary to return
-        rvalue = dict()
-    
         # Get a list of the subtrees representing a program unit
         subtrees = self.head.walk("ProgramUnit")
         
         # Get the ProgramUnit representation of each subtree
-        for subtree in subtrees:
-            programunit = parse_programunit(subtree)
-            rvalue[programunit.name] = programunit
-
-        return rvalue
-
+        return [parse_programunit(subtree) for subtree in subtrees]
 
     @classmethod
     def generate_parse_tree(cls, source_filepath):
