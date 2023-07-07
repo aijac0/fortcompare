@@ -12,8 +12,8 @@ class Implementation:
     Class that represents the abstract structure of a Fortran program implementation.
     """
     def __init__(self):
-        self.filepath : str = None                  # Path to implementation root directory
-        self.sources : list[SourceFile] = []        # List of source files in implementation
+        self.filepath : str = None                              # Path to implementation root directory
+        self.sources : dict[str, SourceFile] = dict()           # Dictionary mapping the relative path to each source file to its object representation
         
         
 class SourceFile:
@@ -21,8 +21,8 @@ class SourceFile:
     Class that represents the abstract structure of a Fortran source file.
     """
     def __init__(self):
-        self.filepath : str = None                  # Path to source file
-        self.programunits : list[SourceFile] = []   # List of program units in implementation
+        self.filepath : str = None                               # Path to source file, relative to the path to its implementation root directory
+        self.programunits : dict[str, ProgramUnit] = dict()      # Dictionary mapping the name of each program unit to its object representation
 
 
 class ProgramUnit:
