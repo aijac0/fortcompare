@@ -1,6 +1,6 @@
 import sys
 from initial import initialize
-from static_analysis import StaticAnalyzer
+from static_analysis import statically_analyze
 
 if __name__ == "__main__":
 
@@ -10,12 +10,11 @@ if __name__ == "__main__":
     else:
         raise Exception("Usage: python3 frtt.py [specifications-file]")
 
-    # Initialize the specifications dictionary
+    # Run the initialization phase
     specifications = initialize(yaml_filepath)
     
     # Run the static analysis phase
-    static_analyzer = StaticAnalyzer(specifications)
-    implementations = static_analyzer.run()
+    implementations = statically_analyze(specifications)
         
     # Output result
     for implem in implementations:
