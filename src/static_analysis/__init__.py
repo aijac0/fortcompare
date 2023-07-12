@@ -1,17 +1,19 @@
-from utilities.types import Specifications
-from static_analysis.parsing import parse
-from static_analysis.resolution import resolve
+from utilities.types.generic import Program
+from static_analysis.parsing import parsing
+from static_analysis.resolution import resolution
+from static_analysis.isomorphism import isomorphism
 
-def statically_analyze(specifications : Specifications):
-    """
-    Finding the similar subprograms between each implementation, as well as the external variables and subprograms that are referenced by each.
-    :implementations: List of objects representing each implementation.
-    """
-    
+def static_analysis(filepaths1 : list[str], filepaths2 : list[str]) -> tuple[Program, Program, dict]:
+
     # Run the parsing phase
-    implementations = parse(specifications)
+    program1 = parsing(filepaths1)
+    program2 = parsing(filepaths2)
     
     # Run the resolution phase
-    resolve(implementations)
+    resolution(program1)
+    resolution(program2)
     
-    return implementations
+    # Run the isomorphism phase
+    mapping = isomorphism(program1, program2)
+    
+    return program1, program2, mapping

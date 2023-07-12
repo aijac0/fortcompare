@@ -1,23 +1,21 @@
-from utilities.types import Implementation, SourceFile
+from utilities.types.generic import Program
+from static_analysis.resolution.module_resolution import resolve_modules
+from static_analysis.resolution.procedure_resolution import resolve_procedures
+from static_analysis.resolution.variable_resolution import resolve_variables
 
-class Resolver:
+def resolution(program : Program):
+    """
+    Resolve the name references to objects in a program
+
+    Args:
+        program (Program) : Object representation of a program
+    """
+
+    # Resolve the module references
+    resolve_modules(program)
     
-    def __init__(self, implementations : list[Implementation]):
-        """
-        Initialize Parser object.
-        :implementations: List of objects representing each implementation.
-        """
-        self.implementations = implementations
+    # Resolve the procedure references
+    resolve_procedures(program)
     
-    def run(self) -> list[Implementation]:
-        """
-        Parse the abstract structure of each implementation from the Flang parse tree of each of its source files.
-        :rvalue: List of objects representing each implementation.
-        """
-        
-        # List of implementations to return
-        implems = self.implementations
-        
-        # TODO
-                    
-        return implems
+    # Resolve the variable references
+    resolve_variables(program)

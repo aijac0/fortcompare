@@ -1,25 +1,28 @@
-from yaml import safe_load
-from utilities.types import Specifications
+import os
+import fnmatch
 
-def initialize(specs_filepath):
-    """
-    Initialize the specifications dictionary.
-    :specs_filepath: Path to .yaml file containing specifications
-    :return: Dictionary representation of specifications.
-    """
+def initial(rootpath1 : str, rootpath2 : str):
     
-    # Read specifications file
-    f = open(specs_filepath, "r")
-    yaml_contents = safe_load(f)
-    f.close()
+    # Get the list of filepaths from each rootpath
+    filepaths1 = __get_filepaths(rootpath1)
+    filepaths2 = __get_filepaths(rootpath2)
+
+    return filepaths1, filepaths2
+
+
+def __get_filepaths(rootpath : str):
     
-    # Get path to directory containing specifications file
-    tokens = specs_filepath.split('/')
-    specs_directory = "." if len(tokens) == 1 else "/".join(tokens[:-1])
+    # Initialize list to return
+    filepaths = list()
     
-    # Create object representing specifications file
-    specs = Specifications()
-    specs.rootpaths = [specs_directory + '/' + implem["rootpath"] for implem in yaml_contents]
-    specs.filepaths = [implem["filepaths"] for implem in yaml_contents]
-    
-    return specs
+    # Recursively search the rootpath directory
+    for dirpath, _, fpaths in os.walk(rootpath):
+        
+        # Iterate over each Fortran source filename
+        for fpath in fnmatch.filter(fpaths, "*.f*"):
+            
+            # Add the complete filepath to the list to return
+            filepath = os.path.join(dirpath, fpath)
+            filepaths.append(str(filepath))
+
+    return filepaths
