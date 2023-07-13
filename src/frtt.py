@@ -18,6 +18,5 @@ if __name__ == "__main__":
     program1, program2, isomorphism = static_analysis(filepaths1, filepaths2)
     
     # Output result
-    #print(str(program1))
-    #print(str(program2))
-    print(isomorphism)
+    print(str(program1))
+    print(str(program2))
