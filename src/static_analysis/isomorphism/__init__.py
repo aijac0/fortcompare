@@ -1,2 +1,4 @@
-def isomorphism(program1, program2):
+from utilities.types.isomorphism import Isomorphism
+
+def isomorphism(program1, program2) -> Isomorphism:
     return None
