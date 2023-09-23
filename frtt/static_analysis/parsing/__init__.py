@@ -1,6 +1,6 @@
-from utilities.types.generic import Program
-from static_analysis.parsing.abstract_syntax_tree import get_abstract_syntax_tree
-from static_analysis.parsing.tree_parsing import parse_program
+from frtt.utilities.types.generic import Program
+from frtt.static_analysis.parsing.abstract_syntax_tree import get_abstract_syntax_tree
+from frtt.static_analysis.parsing.tree_parsing import parse_program
 
 def parsing(filepaths : list[str]) -> Program:
     """ 

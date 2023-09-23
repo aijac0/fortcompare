@@ -1,5 +1,5 @@
 from subprocess import check_output
-from utilities.types.tree_node import TreeNode
+from frtt.utilities.types.tree_node import TreeNode
 
 def get_abstract_syntax_tree(source_filepath):
     """

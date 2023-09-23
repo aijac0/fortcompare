@@ -1,5 +1,5 @@
-from utilities.types.mapping import Mapping
-from utilities.types.generic import ProgramUnit, Variable
+from frtt.utilities.types.mapping import Mapping
+from frtt.utilities.types.generic import ProgramUnit, Variable
 
 
 class Isomorphism:

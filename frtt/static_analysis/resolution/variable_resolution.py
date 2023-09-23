@@ -1,5 +1,5 @@
 from queue import Queue
-from utilities.types.generic import Program, ProgramUnit, Variable
+from frtt.utilities.types.generic import Program, ProgramUnit, Variable
 
 def resolve_variables(program : Program):
     """

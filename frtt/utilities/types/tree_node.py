@@ -4,7 +4,6 @@ class TreeNode:
         self.value = value
         self.children = []
 
-
     def walk(self, targets, exception_handling=False):
         """
         Traverse parse tree and return all nodes with a value equal to one of the target values
@@ -168,7 +167,7 @@ class TreeNode:
         return None
 
 
-    def to_string(self):
+    def __str__(self):
         """
         DFS search the parse tree and append each node to string with '|' symbols to indicate depth
         :return: String representation of tree
@@ -185,4 +184,5 @@ class TreeNode:
             depth, node = stack.pop()
             stack.extend([(depth + 1, child) for child in reversed(node.children)])
             out_str += ("| " * depth if depth else "") + str(node.value) + '\n'
+
         return out_str

@@ -1,5 +1,5 @@
 from queue import Queue
-from utilities.types.generic import Program, ProgramUnit
+from frtt.utilities.types.generic import Program, ProgramUnit
 
 def resolve_procedures(program : Program):
     """
