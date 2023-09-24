@@ -28,6 +28,7 @@ def parsing(filepaths : list[str]) -> Program:
         # Add parsed programunits to list
         while parsed_programunits:
             punit = parsed_programunits.pop()
+            punit.filepath = filepath
             parsed_programunits.extend(punit.declared_procedures)
             program.declared_programunits.append(punit)
 

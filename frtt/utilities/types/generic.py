@@ -24,6 +24,7 @@ class ProgramUnit:
     Class that represents the abstract structure of a Fortran program unit (module, subroutine, function).
     """
     def __init__(self):
+        self.filepath : str = None                                             # Path to source file that contains the declaration for this program unit
         self.name : str = None                                                 # Name of the program unit
         self.type : str = None                                                 # Type of program unit ("module", "function", or "subroutine")
         self.referenced_modules : list[ProgramUnit] = list()                   # List of modules referenced by program unit 
