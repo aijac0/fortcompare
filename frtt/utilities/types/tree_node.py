@@ -167,6 +167,16 @@ class TreeNode:
         return None
 
 
+    def deep_copy(self):
+        head = TreeNode(self.value)
+        stack = [(head, next) for next in self.children]
+        while stack:
+            prev, curr = stack.pop()
+            new = TreeNode(curr.value)
+            prev.children.append(new)
+            stack.extend([(new, next) for next in curr.children])
+        return head
+
     def __str__(self):
         """
         DFS search the parse tree and append each node to string with '|' symbols to indicate depth
