@@ -7,7 +7,6 @@ def get_abstract_syntax_tree(source_filepath):
     :source_filepath: Fortran source file to generate flang parse tree for
     :return: TreeNode representation of flang abstract syntax tree
     """
-    print("hello")
 
     # Get the raw string representation of AST
     raw_parse_tree = check_output("flang-new -fc1 -fdebug-dump-parse-tree-no-sema {}".format(source_filepath), shell=True, text=True)  
@@ -22,6 +21,7 @@ def get_abstract_syntax_tree(source_filepath):
     prev_node = head
     prev_is_extended = False
     prev_depth = -1
+    initial_program_unit = True
 
     # Current line number
     line_num = 1
@@ -89,8 +89,7 @@ def get_abstract_syntax_tree(source_filepath):
                                 keywords.append(keyword)
 
         # Add 1 to the depth of lines excluding the lines in the first program unit
-        if curr_depth == 0 and head:
-            parent = head
+        if curr_depth == 0 and head is not None:
             initial_program_unit = False
         curr_depth += not initial_program_unit
 
