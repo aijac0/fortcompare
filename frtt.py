@@ -17,6 +17,12 @@ if __name__ == "__main__":
     # Run the static analysis phase
     program1, program2, isomorphism = static_analysis(filepaths1, filepaths2)
     
+    # Run the dynamic analysis phase
+    # TODO
+    
+    # Run the code generation phase
+    # TODO
+    
     # Output result
     print(str(program1))
     print(str(program2))
