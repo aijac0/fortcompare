@@ -1,15 +1,22 @@
 from subprocess import check_output
 from frtt.utilities.types.tree_node import TreeNode
 
-def get_abstract_syntax_tree(source_filepath):
+
+def get_abstract_syntax_tree(filepath, is_source = True):
     """
     Get the abstract syntax tree representation of a Fortran source file from the Flang command
-    :source_filepath: Fortran source file to generate flang parse tree for
+    :filepath: Fortran source file to generate flang parse tree for
+    :is_source: True if filepath is a source file, False if it is a text file containing raw representation of Flang parse tree
     :return: TreeNode representation of flang abstract syntax tree
     """
-
+    
     # Get the raw string representation of AST
-    raw_parse_tree = check_output("flang-new -fc1 -fdebug-dump-parse-tree-no-sema {}".format(source_filepath), shell=True, text=True)  
+    if is_source:
+        raw_parse_tree = check_output("flang-new -fc1 -fdebug-dump-parse-tree-no-sema {}".format(filepath), shell=True, text=True)  
+    else:
+        f = open(filepath)
+        raw_parse_tree = f.read()
+        f.close()
 
     # Stack to hold all parent nodes to backtrack to
     stack = []
