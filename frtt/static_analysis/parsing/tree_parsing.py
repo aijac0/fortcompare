@@ -1,5 +1,6 @@
-from frtt.utilities.types.generic import ProgramUnit, Variable
+from frtt.utilities.types.generic import ProgramUnit
 from frtt.utilities.types.tree_node import TreeNode
+from frtt.static_analysis.parsing.variable_parsing import parse_variables
 
 def parse_program(tree : TreeNode) -> list[ProgramUnit]:
     """
@@ -84,19 +85,6 @@ def parse_specificationpart(tree, obj):
         namestmt = usestmt.step("Name", exception_handling=True)
         name = namestmt.leaf().value[1:-1]
         obj.referenced_module_names.add(name)
-    
-    # Get nodes that represent entity declarations
-    entitydecls = tree.walk("EntityDecl")
-    
-    # Add the name of each entity declaration as a variable declaration
-    for entitydecl in entitydecls:
-        namestmt = entitydecl.step("Name", exception_handling=True)
-        name = namestmt.leaf().value[1:-1]
-        if name not in obj.declared_variables_map:
-            var = Variable()
-            var.name = name
-            obj.declared_variables.append(var)
-            obj.declared_variables_map[name] = var
             
     # Get nodes that represent data references
     datarefs = tree.walk("DataRef")
@@ -116,6 +104,11 @@ def parse_specificationpart(tree, obj):
         name = namestmt.leaf().value[1:-1]
         obj.referenced_procedure_names.add(name)
         
+    # Parse variables declarations
+    implicit_part = tree.step(["ImplicitPart"])
+    if implicit_part:
+        parse_variables(implicit_part, obj)
+
 
 def parse_internalsubprogrampart(tree, obj):
     """
@@ -175,4 +168,3 @@ def parse_executionpart(tree, obj):
         namestmt = proceduredesignator.step("Name", exception_handling=True)
         name = namestmt.leaf().value[1:-1]
         obj.referenced_procedure_names.add(name)
-        
