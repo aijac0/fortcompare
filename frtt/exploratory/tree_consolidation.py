@@ -55,5 +55,5 @@ if __name__ == "__main__":
     tree = consolidate(trees, start_node=start_node, ignore_nodes=ignore_nodes)
 
     # Write consolidated tree to file
-    with open("frtt/exploratory/consolidated.txt", 'w') as f:
+    with open("frtt/exploratory/specification_consolidated.txt", 'w') as f:
         f.write(str(tree))
