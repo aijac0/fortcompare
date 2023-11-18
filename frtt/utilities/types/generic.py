@@ -6,10 +6,10 @@ class Program:
     """
     def __init__(self):
         self.declared_programunits : list[ProgramUnit] = list()              # List of programunits in the program
+        self.dependency_graph: dict[ProgramUnit, list[ProgramUnit]]          # Dictionary mapping each ProgramUnit to the ProgramUnits it depends on (references)
         # Dictionaries that map names to objects
         self.declared_modules_map : dict[str, ProgramUnit] = dict()          # Dictionary that maps the name of a module to its object
         self.declared_procedures_map : dict[str, ProgramUnit] = dict()       # Dictionary that maps the name of a procedure to its object
-
         
     def __str__(self):
         out_str = ""
