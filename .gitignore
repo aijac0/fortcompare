@@ -3,6 +3,7 @@
 .*
 frtt/exploratory/results.txt
 frtt/exploratory/variables.txt
+frtt/exploratory/test.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
