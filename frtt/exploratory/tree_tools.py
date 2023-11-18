@@ -124,3 +124,27 @@ def get_node_names(path : TreeNode):
             break
         curr = curr.children[0]
     return node_names
+
+def get_path(tree : TreeNode, path : list[str]):
+    stack = [(tree, 0)]
+    while stack:
+        curr, depth = stack.pop()
+        if depth + 1 == len(path):
+            head = TreeNode(path[0])
+            prev = head
+            for node_name in path[1:-1]:
+                next = TreeNode(node_name)
+                prev.children.append(next)
+                prev = next
+            prev.children.append(curr)
+            return head
+        stack.extend([(c, depth + 1) for c in curr.children if c.name() == path[depth + 1]])
+    return None
+
+def has_path(tree : TreeNode, path : list[str]):
+    stack = [(tree, 0)]
+    while stack:
+        curr, depth = stack.pop()
+        if depth + 1 == len(path): return True
+        stack.extend([(c, depth + 1) for c in curr.children if c.name() == path[depth + 1]])
+    return False
