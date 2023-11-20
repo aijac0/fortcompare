@@ -1,16 +1,28 @@
+from typing import Union
 from frtt.utilities.types.tree_node import TreeNode
 from frtt.initial.initialize import initialize
 from frtt.static_analysis.parsing.abstract_syntax_tree import get_abstract_syntax_tree
 
-def consolidate(trees : list[TreeNode], start_node = None, ignore_nodes = None):
-    if start_node is None: start_node = "Program"
+def consolidate(trees : Union[TreeNode, list[TreeNode]], start_node = None, ignore_nodes = None):
+    if type(trees) == TreeNode: trees = [trees]
     if ignore_nodes is None: ignore_nodes = []
-    
-    # Get list of trees to consolidate
+
+    # List of trees to consolidate
     source_trees = []
-    for tree in trees:
-        source_trees.extend(tree.walk(start_node))
-        if tree.name() == start_node: source_trees.append(tree)
+    
+    # Start node is given
+    # Get all subtrees rooted at start_node
+    if start_node is not None:
+        for tree in trees:
+            source_trees.extend(tree.walk(start_node))
+            if tree.name == start_node: source_trees.append(tree)
+    
+    # Start node is not given
+    # Assert all trees are rooted at the same node
+    else:
+        start_node = trees[0].name
+        for tree in trees: assert tree.name == start_node
+        source_trees = trees
     
     # Consolidate trees
     return consolidate_helper(source_trees, start_node, ignore_nodes)
@@ -29,10 +41,10 @@ def consolidate_helper(nodes : list[TreeNode], node_name : str, ignore_nodes : l
     name_map = dict()
     for node in nodes:
         for child in node.children:
-            if child.name() not in name_map:
-                name_map[child.name()] = [child]
+            if child.name not in name_map:
+                name_map[child.name] = [child]
             else:
-                name_map[child.name()].append(child)
+                name_map[child.name].append(child)
     
     # Call consolidate helper on each group and add result to children of consolidated node
     for child_name, children in name_map.items():
@@ -55,5 +67,5 @@ if __name__ == "__main__":
     tree = consolidate(trees, start_node=start_node, ignore_nodes=ignore_nodes)
 
     # Write consolidated tree to file
-    with open("frtt/exploratory/specification_consolidated.txt", 'w') as f:
+    with open("frtt/data/specification_consolidated.txt", 'w') as f:
         f.write(str(tree))
