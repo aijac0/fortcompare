@@ -177,7 +177,7 @@ class TreeNode:
             stack.extend([(new, next) for next in curr.children])
         return head
     
-    
+    @property
     def name(self):
         return self.value if self.value[0] != "\'" and self.value[-1] != "\'" else "ValueString"        
 
