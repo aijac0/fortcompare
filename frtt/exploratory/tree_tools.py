@@ -69,7 +69,7 @@ def find_trees(path, trees):
     matching_trees = []
     for tree in trees:
         subtrees = tree.walk(path[0])
-        if pts.get_node_name(tree) == path[0]:
+        if tree.name == path[0]:
             subtrees.append(tree)
         for subtree in subtrees:
             contains_path = True
@@ -85,16 +85,18 @@ def find_trees(path, trees):
     return matching_trees
 
 
-def enumerate_paths(tree : TreeNode):
+def enumerate_tree_paths(tree : TreeNode):
     """
-    DFS to get each path from root to leaf in tree
+    Generator that yields each path from root to leaf
+    Each path is linear (each node along path has 0 or 1 children)
+    If tree is consolidated (see tree_consolidation.py) each path will be distinct
     """
     
     # DFS storing path to current node
     stack = [(tree, ())]
     while stack:
         curr, prev_path = stack.pop()
-        curr_name = curr.name()
+        curr_name = curr.name
         curr_path = prev_path + (curr_name,)
         
         # Create and output path if node is a leaf
@@ -111,19 +113,17 @@ def enumerate_paths(tree : TreeNode):
         else:
             stack.extend([(next, curr_path) for next in curr.children])
             
-def get_node_names(path : TreeNode):
+def enumerate_path_nodes(path : TreeNode):
     """
-    Print '->' separated names of nodes in path.
-    Assumes path is linear (each node has either 0 or 1 children)
+    Generator that yields each node along a path
+    Path is assumed to be linear (each node either has 0 or 1 children)
     """
-    node_names = []
     curr = path
-    while True:
-        node_names.append(curr.name())
-        if not curr.children:
-            break
+    while curr.children:
+        yield curr
         curr = curr.children[0]
-    return node_names
+    yield curr
+
 
 def get_path(tree : TreeNode, path : list[str]):
     stack = [(tree, 0)]
@@ -138,7 +138,7 @@ def get_path(tree : TreeNode, path : list[str]):
                 prev = next
             prev.children.append(curr)
             return head
-        stack.extend([(c, depth + 1) for c in curr.children if c.name() == path[depth + 1]])
+        stack.extend([(c, depth + 1) for c in curr.children if c.name == path[depth + 1]])
     return None
 
 def has_path(tree : TreeNode, path : list[str]):
@@ -146,5 +146,5 @@ def has_path(tree : TreeNode, path : list[str]):
     while stack:
         curr, depth = stack.pop()
         if depth + 1 == len(path): return True
-        stack.extend([(c, depth + 1) for c in curr.children if c.name() == path[depth + 1]])
+        stack.extend([(c, depth + 1) for c in curr.children if c.name == path[depth + 1]])
     return False
