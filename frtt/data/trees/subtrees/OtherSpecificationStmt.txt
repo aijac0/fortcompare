@@ -1,0 +1,41 @@
+OtherSpecificationStmt
+| ExternalStmt
+| | Name
+| | | ValueString
+| NamelistStmt
+| | Group
+| | | Name
+| | | | ValueString
+| AccessStmt
+| | AccessSpec
+| | | Kind
+| | | | Public
+| | | | Private
+| | AccessId
+| | | GenericSpec
+| | | | Name
+| | | | | ValueString
+| CommonStmt
+| | Block
+| DimensionStmt
+| | Declaration
+| | | ExplicitShapeSpec
+| | | | SpecificationExpr
+| | | | | Scalar
+| | | Name
+| | | | ValueString
+| | | ArraySpec
+| | | | ImpliedShapeSpec
+| | | | | AssumedImpliedSpec
+| | | | ExplicitShapeSpec
+| | | | | SpecificationExpr
+| | | | | | Scalar
+| EquivalenceStmt
+| | EquivalenceObject
+| | | Designator
+| SaveStmt
+| | SavedEntity
+| | | Kind
+| | | | Entity
+| | | Name
+| | | | ValueString

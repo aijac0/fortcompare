@@ -1,0 +1,5 @@
+IntentSpec
+| Intent
+| | InOut
+| | Out
+| | In

@@ -1,0 +1,9 @@
+AccessStmt
+| AccessSpec
+| | Kind
+| | | Public
+| | | Private
+| AccessId
+| | GenericSpec
+| | | Name
+| | | | ValueString

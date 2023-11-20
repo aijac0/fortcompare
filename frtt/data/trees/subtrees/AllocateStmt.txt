@@ -1,0 +1,8 @@
+AllocateStmt
+| Allocation
+| | AllocateObject
+| | | Name
+| | | | ValueString
+| | | StructureComponent
+| | AllocateShapeSpec
+| | | Scalar

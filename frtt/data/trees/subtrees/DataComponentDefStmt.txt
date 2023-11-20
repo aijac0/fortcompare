@@ -1,0 +1,40 @@
+DataComponentDefStmt
+| DeclarationTypeSpec
+| | IntrinsicTypeSpec
+| | | IntegerTypeSpec
+| | | | ComponentOrFill
+| | | | | ComponentDecl
+| | | | | | Name
+| | | | | | | ValueString
+| | | | ComponentAttrSpec
+| | | | | ComponentArraySpec
+| | | | | | ExplicitShapeSpec
+| | | | | | | SpecificationExpr
+| | | | | | | | Scalar
+| | | Real
+| | | | KindSelector
+| | | | | Scalar
+| | | Character
+| | | | CharSelector
+| | | | | LengthSelector
+| | | | | | TypeParamValue
+| | | | | | | Scalar
+| | Type
+| | | DerivedTypeSpec
+| | | | Name
+| | | | | ValueString
+| ComponentAttrSpec
+| | ComponentArraySpec
+| | | DeferredShapeSpecList
+| | | | int
+| | | ExplicitShapeSpec
+| | | | SpecificationExpr
+| | | | | Scalar
+| | Pointer
+| ComponentOrFill
+| | ComponentDecl
+| | | Name
+| | | | ValueString
+| | | Initialization
+| | | | NullInit
+| | | | | Expr

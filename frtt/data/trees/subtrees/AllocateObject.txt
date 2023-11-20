@@ -1,0 +1,4 @@
+AllocateObject
+| Name
+| | ValueString
+| StructureComponent

@@ -1,0 +1,13 @@
+DimensionStmt
+| Declaration
+| | ExplicitShapeSpec
+| | | SpecificationExpr
+| | | | Scalar
+| | Name
+| | | ValueString
+| | ArraySpec
+| | | ImpliedShapeSpec
+| | | | AssumedImpliedSpec
+| | | ExplicitShapeSpec
+| | | | SpecificationExpr
+| | | | | Scalar

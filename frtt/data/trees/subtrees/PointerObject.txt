@@ -1,0 +1,4 @@
+PointerObject
+| Name
+| | ValueString
+| StructureComponent

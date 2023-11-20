@@ -1,0 +1,3 @@
+CharLength
+| uint64_t
+| | ValueString

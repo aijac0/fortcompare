@@ -1,0 +1,6 @@
+Designator
+| Substring
+| | DataRef
+| | SubstringRange
+| | | Scalar
+| DataRef

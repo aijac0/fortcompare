@@ -1,0 +1,15 @@
+InterfaceBlock
+| InterfaceStmt
+| | GenericSpec
+| | | Name
+| | | | ValueString
+| InterfaceSpecification
+| | ProcedureStmt
+| | | Kind
+| | | | ModuleProcedure
+| | | Name
+| | | | ValueString
+| EndInterfaceStmt
+| | GenericSpec
+| | | Name
+| | | | ValueString

@@ -1,0 +1,2 @@
+LogicalLiteralConstant
+| bool

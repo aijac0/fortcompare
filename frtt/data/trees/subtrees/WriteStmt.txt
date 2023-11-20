@@ -1,0 +1,19 @@
+WriteStmt
+| IoControlSpec
+| | Name
+| | | ValueString
+| | Format
+| | | Expr
+| IoUnit
+| | FileUnitNumber
+| | | Scalar
+| | Variable
+| | | FunctionReference
+| | | Designator
+| | Star
+| Format
+| | uint64_t
+| | | ValueString
+| | Expr
+| | Star
+| OutputItem

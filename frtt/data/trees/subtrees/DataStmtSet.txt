@@ -1,0 +1,27 @@
+DataStmtSet
+| DataStmtObject
+| | Variable
+| | | FunctionReference
+| | | Designator
+| DataStmtValue
+| | DataStmtRepeat
+| | | Scalar
+| | | IntLiteralConstant
+| | | | ValueString
+| | DataStmtConstant
+| | | SignedIntLiteralConstant
+| | | | ValueString
+| | | SignedRealLiteralConstant
+| | | | Sign
+| | | | RealLiteralConstant
+| | | | | Real
+| | | | | | ValueString
+| | | LiteralConstant
+| | | | CharLiteralConstant
+| | | | | string
+| | | | | | ValueString
+| | | | IntLiteralConstant
+| | | | | ValueString
+| | | | RealLiteralConstant
+| | | | | Real
+| | | | | | ValueString

@@ -1,0 +1,17 @@
+ConnectSpec
+| StatVariable
+| | Scalar
+| ErrLabel
+| | uint64_t
+| | | ValueString
+| StatusExpr
+| | Scalar
+| CharExpr
+| | Kind
+| | | Position
+| | | Form
+| | | Access
+| | Scalar
+| FileUnitNumber
+| | Scalar
+| Scalar

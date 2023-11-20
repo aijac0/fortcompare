@@ -1,0 +1,98 @@
+TypeDeclarationStmt
+| ExplicitShapeSpec
+| | SpecificationExpr
+| | | Scalar
+| AttrSpec
+| | Target
+| | Save
+| | Parameter
+| | Allocatable
+| | Pointer
+| | IntentSpec
+| | | Intent
+| | | | InOut
+| | | | Out
+| | | | In
+| | Optional
+| | ArraySpec
+| | | DeferredShapeSpecList
+| | | | int
+| | | ExplicitShapeSpec
+| | | | SpecificationExpr
+| | | | | Scalar
+| DeclarationTypeSpec
+| | Type
+| | | DerivedTypeSpec
+| | | | Name
+| | | | | ValueString
+| | IntrinsicTypeSpec
+| | | Complex
+| | | Real
+| | | | KindSelector
+| | | | | StarSize
+| | | | | | uint64_t
+| | | | | | | ValueString
+| | | | | Scalar
+| | | DoublePrecision
+| | | IntegerTypeSpec
+| | | | KindSelector
+| | | | | Scalar
+| | | | ExplicitShapeSpec
+| | | | | SpecificationExpr
+| | | | | | Scalar
+| | | | AttrSpec
+| | | | | Save
+| | | | | Optional
+| | | | | Parameter
+| | | | | Allocatable
+| | | | | IntentSpec
+| | | | | | Intent
+| | | | | | | InOut
+| | | | | | | Out
+| | | | | | | In
+| | | | | ArraySpec
+| | | | | | DeferredShapeSpecList
+| | | | | | | int
+| | | | | | ExplicitShapeSpec
+| | | | | | | SpecificationExpr
+| | | | | | | | Scalar
+| | | | EntityDecl
+| | | | | ArraySpec
+| | | | | | ExplicitShapeSpec
+| | | | | | | SpecificationExpr
+| | | | | | | | Scalar
+| | | | | ExplicitShapeSpec
+| | | | | | SpecificationExpr
+| | | | | | | Scalar
+| | | | | Initialization
+| | | | | | Constant
+| | | | | | | Expr
+| | | | | Name
+| | | | | | ValueString
+| | | Logical
+| | | | KindSelector
+| | | | | Scalar
+| | | Character
+| | | | CharSelector
+| | | | | LengthSelector
+| | | | | | TypeParamValue
+| | | | | | | Star
+| | | | | | | Scalar
+| EntityDecl
+| | ExplicitShapeSpec
+| | | SpecificationExpr
+| | | | Scalar
+| | Initialization
+| | | Constant
+| | | | Expr
+| | CharLength
+| | | uint64_t
+| | | | ValueString
+| | ArraySpec
+| | | DeferredShapeSpecList
+| | | | int
+| | | ExplicitShapeSpec
+| | | | SpecificationExpr
+| | | | | Scalar
+| | Name
+| | | ValueString

@@ -1,0 +1,3 @@
+EquivalenceStmt
+| EquivalenceObject
+| | Designator

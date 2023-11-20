@@ -1,0 +1,6 @@
+ComponentArraySpec
+| DeferredShapeSpecList
+| | int
+| ExplicitShapeSpec
+| | SpecificationExpr
+| | | Scalar

@@ -1,0 +1,3 @@
+GenericSpec
+| Name
+| | ValueString

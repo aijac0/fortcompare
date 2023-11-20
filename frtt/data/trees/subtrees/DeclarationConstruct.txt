@@ -1,0 +1,243 @@
+DeclarationConstruct
+| StmtFunctionStmt
+| | Name
+| | | ValueString
+| | Scalar
+| DataStmt
+| | DataStmtSet
+| | | DataStmtObject
+| | | | Variable
+| | | | | FunctionReference
+| | | | | Designator
+| | | DataStmtValue
+| | | | DataStmtRepeat
+| | | | | Scalar
+| | | | | IntLiteralConstant
+| | | | | | ValueString
+| | | | DataStmtConstant
+| | | | | SignedIntLiteralConstant
+| | | | | | ValueString
+| | | | | SignedRealLiteralConstant
+| | | | | | Sign
+| | | | | | RealLiteralConstant
+| | | | | | | Real
+| | | | | | | | ValueString
+| | | | | LiteralConstant
+| | | | | | CharLiteralConstant
+| | | | | | | string
+| | | | | | | | ValueString
+| | | | | | RealLiteralConstant
+| | | | | | | Real
+| | | | | | | | ValueString
+| | | | | | IntLiteralConstant
+| | | | | | | ValueString
+| SpecificationConstruct
+| | ParameterStmt
+| | | NamedConstantDef
+| | | | NamedConstant
+| | | | | Name
+| | | | | | ValueString
+| | | | Constant
+| | | | | Expr
+| | DerivedTypeDef
+| | | DerivedTypeStmt
+| | | | Name
+| | | | | ValueString
+| | | ComponentDefStmt
+| | | | DataComponentDefStmt
+| | | | | DeclarationTypeSpec
+| | | | | | IntrinsicTypeSpec
+| | | | | | | IntegerTypeSpec
+| | | | | | | | ComponentOrFill
+| | | | | | | | | ComponentDecl
+| | | | | | | | | | Name
+| | | | | | | | | | | ValueString
+| | | | | | | | ComponentAttrSpec
+| | | | | | | | | ComponentArraySpec
+| | | | | | | | | | ExplicitShapeSpec
+| | | | | | | | | | | SpecificationExpr
+| | | | | | | | | | | | Scalar
+| | | | | | | Real
+| | | | | | | | KindSelector
+| | | | | | | | | Scalar
+| | | | | | | Character
+| | | | | | | | CharSelector
+| | | | | | | | | LengthSelector
+| | | | | | | | | | TypeParamValue
+| | | | | | | | | | | Scalar
+| | | | | | Type
+| | | | | | | DerivedTypeSpec
+| | | | | | | | Name
+| | | | | | | | | ValueString
+| | | | | ComponentAttrSpec
+| | | | | | ComponentArraySpec
+| | | | | | | DeferredShapeSpecList
+| | | | | | | | int
+| | | | | | | ExplicitShapeSpec
+| | | | | | | | SpecificationExpr
+| | | | | | | | | Scalar
+| | | | | | Pointer
+| | | | | ComponentOrFill
+| | | | | | ComponentDecl
+| | | | | | | Name
+| | | | | | | | ValueString
+| | | | | | | Initialization
+| | | | | | | | NullInit
+| | | | | | | | | Expr
+| | | EndTypeStmt
+| | | | Name
+| | | | | ValueString
+| | InterfaceBlock
+| | | InterfaceStmt
+| | | | GenericSpec
+| | | | | Name
+| | | | | | ValueString
+| | | InterfaceSpecification
+| | | | ProcedureStmt
+| | | | | Kind
+| | | | | | ModuleProcedure
+| | | | | Name
+| | | | | | ValueString
+| | | EndInterfaceStmt
+| | | | GenericSpec
+| | | | | Name
+| | | | | | ValueString
+| | OtherSpecificationStmt
+| | | ExternalStmt
+| | | | Name
+| | | | | ValueString
+| | | NamelistStmt
+| | | | Group
+| | | | | Name
+| | | | | | ValueString
+| | | AccessStmt
+| | | | AccessSpec
+| | | | | Kind
+| | | | | | Public
+| | | | | | Private
+| | | | AccessId
+| | | | | GenericSpec
+| | | | | | Name
+| | | | | | | ValueString
+| | | CommonStmt
+| | | | Block
+| | | DimensionStmt
+| | | | Declaration
+| | | | | ExplicitShapeSpec
+| | | | | | SpecificationExpr
+| | | | | | | Scalar
+| | | | | Name
+| | | | | | ValueString
+| | | | | ArraySpec
+| | | | | | ImpliedShapeSpec
+| | | | | | | AssumedImpliedSpec
+| | | | | | ExplicitShapeSpec
+| | | | | | | SpecificationExpr
+| | | | | | | | Scalar
+| | | EquivalenceStmt
+| | | | EquivalenceObject
+| | | | | Designator
+| | | SaveStmt
+| | | | SavedEntity
+| | | | | Kind
+| | | | | | Entity
+| | | | | Name
+| | | | | | ValueString
+| | TypeDeclarationStmt
+| | | ExplicitShapeSpec
+| | | | SpecificationExpr
+| | | | | Scalar
+| | | AttrSpec
+| | | | Target
+| | | | Save
+| | | | Parameter
+| | | | Allocatable
+| | | | Pointer
+| | | | IntentSpec
+| | | | | Intent
+| | | | | | InOut
+| | | | | | Out
+| | | | | | In
+| | | | Optional
+| | | | ArraySpec
+| | | | | DeferredShapeSpecList
+| | | | | | int
+| | | | | ExplicitShapeSpec
+| | | | | | SpecificationExpr
+| | | | | | | Scalar
+| | | DeclarationTypeSpec
+| | | | Type
+| | | | | DerivedTypeSpec
+| | | | | | Name
+| | | | | | | ValueString
+| | | | IntrinsicTypeSpec
+| | | | | Complex
+| | | | | Real
+| | | | | | KindSelector
+| | | | | | | StarSize
+| | | | | | | | uint64_t
+| | | | | | | | | ValueString
+| | | | | | | Scalar
+| | | | | DoublePrecision
+| | | | | IntegerTypeSpec
+| | | | | | KindSelector
+| | | | | | | Scalar
+| | | | | | ExplicitShapeSpec
+| | | | | | | SpecificationExpr
+| | | | | | | | Scalar
+| | | | | | AttrSpec
+| | | | | | | Save
+| | | | | | | Optional
+| | | | | | | Parameter
+| | | | | | | Allocatable
+| | | | | | | IntentSpec
+| | | | | | | | Intent
+| | | | | | | | | InOut
+| | | | | | | | | Out
+| | | | | | | | | In
+| | | | | | | ArraySpec
+| | | | | | | | DeferredShapeSpecList
+| | | | | | | | | int
+| | | | | | | | ExplicitShapeSpec
+| | | | | | | | | SpecificationExpr
+| | | | | | | | | | Scalar
+| | | | | | EntityDecl
+| | | | | | | ArraySpec
+| | | | | | | | ExplicitShapeSpec
+| | | | | | | | | SpecificationExpr
+| | | | | | | | | | Scalar
+| | | | | | | ExplicitShapeSpec
+| | | | | | | | SpecificationExpr
+| | | | | | | | | Scalar
+| | | | | | | Initialization
+| | | | | | | | Constant
+| | | | | | | | | Expr
+| | | | | | | Name
+| | | | | | | | ValueString
+| | | | | Logical
+| | | | | | KindSelector
+| | | | | | | Scalar
+| | | | | Character
+| | | | | | CharSelector
+| | | | | | | LengthSelector
+| | | | | | | | TypeParamValue
+| | | | | | | | | Star
+| | | | | | | | | Scalar
+| | | EntityDecl
+| | | | ExplicitShapeSpec
+| | | | | SpecificationExpr
+| | | | | | Scalar
+| | | | Initialization
+| | | | | Constant
+| | | | | | Expr
+| | | | CharLength
+| | | | | uint64_t
+| | | | | | ValueString
+| | | | ArraySpec
+| | | | | DeferredShapeSpecList
+| | | | | | int
+| | | | | ExplicitShapeSpec
+| | | | | | SpecificationExpr
+| | | | | | | Scalar
+| | | | Name
+| | | | | ValueString

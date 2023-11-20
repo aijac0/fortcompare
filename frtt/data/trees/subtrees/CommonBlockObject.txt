@@ -1,0 +1,10 @@
+CommonBlockObject
+| ExplicitShapeSpec
+| | SpecificationExpr
+| | | Scalar
+| Name
+| | ValueString
+| ArraySpec
+| | ExplicitShapeSpec
+| | | SpecificationExpr
+| | | | Scalar

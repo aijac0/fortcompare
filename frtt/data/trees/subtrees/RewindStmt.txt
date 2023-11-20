@@ -1,0 +1,4 @@
+RewindStmt
+| PositionOrFlushSpec
+| | FileUnitNumber
+| | | Scalar

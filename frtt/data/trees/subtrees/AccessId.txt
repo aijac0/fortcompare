@@ -1,0 +1,4 @@
+AccessId
+| GenericSpec
+| | Name
+| | | ValueString

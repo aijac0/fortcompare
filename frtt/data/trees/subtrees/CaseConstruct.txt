@@ -1,0 +1,15 @@
+CaseConstruct
+| SelectCaseStmt
+| | Scalar
+| Case
+| | CaseStmt
+| | | CaseValueRange
+| | | | Scalar
+| | | CaseSelector
+| | | | CaseValueRange
+| | | | | Range
+| | | | | | Scalar
+| | | | | Scalar
+| | | | Default
+| | Block
+| EndSelectStmt

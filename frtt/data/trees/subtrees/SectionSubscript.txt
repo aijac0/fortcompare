@@ -1,0 +1,4 @@
+SectionSubscript
+| Integer
+| SubscriptTriplet
+| | Scalar

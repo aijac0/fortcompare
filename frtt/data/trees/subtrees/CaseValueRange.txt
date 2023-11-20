@@ -1,0 +1,4 @@
+CaseValueRange
+| Range
+| | Scalar
+| Scalar

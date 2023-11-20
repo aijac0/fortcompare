@@ -1,0 +1,10 @@
+DataRef
+| StructureComponent
+| ArrayElement
+| | DataRef
+| | SectionSubscript
+| | | Integer
+| | | SubscriptTriplet
+| | | | Scalar
+| Name
+| | ValueString

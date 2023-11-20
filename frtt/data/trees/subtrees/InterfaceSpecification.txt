@@ -1,0 +1,6 @@
+InterfaceSpecification
+| ProcedureStmt
+| | Kind
+| | | ModuleProcedure
+| | Name
+| | | ValueString

@@ -1,0 +1,4 @@
+StructureComponent
+| DataRef
+| Name
+| | ValueString

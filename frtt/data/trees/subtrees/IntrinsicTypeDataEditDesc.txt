@@ -1,0 +1,3 @@
+IntrinsicTypeDataEditDesc
+| Kind
+| int

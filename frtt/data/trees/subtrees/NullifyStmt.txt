@@ -1,0 +1,5 @@
+NullifyStmt
+| PointerObject
+| | Name
+| | | ValueString
+| | StructureComponent

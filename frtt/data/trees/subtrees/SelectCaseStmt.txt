@@ -1,0 +1,2 @@
+SelectCaseStmt
+| Scalar

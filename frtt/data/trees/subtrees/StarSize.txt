@@ -1,0 +1,3 @@
+StarSize
+| uint64_t
+| | ValueString

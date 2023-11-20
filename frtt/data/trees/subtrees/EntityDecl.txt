@@ -1,0 +1,18 @@
+EntityDecl
+| ExplicitShapeSpec
+| | SpecificationExpr
+| | | Scalar
+| Initialization
+| | Constant
+| | | Expr
+| CharLength
+| | uint64_t
+| | | ValueString
+| ArraySpec
+| | DeferredShapeSpecList
+| | | int
+| | ExplicitShapeSpec
+| | | SpecificationExpr
+| | | | Scalar
+| Name
+| | ValueString

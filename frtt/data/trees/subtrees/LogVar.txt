@@ -1,0 +1,4 @@
+LogVar
+| Kind
+| | Exist
+| Scalar
