@@ -2,7 +2,8 @@ import networkx as nx
 import matplotlib.pyplot as plt 
 from collections import deque
 from frtt.utilities.types.tree_node import TreeNode
-  
+
+
 def create_graph(tree : TreeNode):
     
     # Initialize graph
@@ -23,6 +24,8 @@ def create_graph(tree : TreeNode):
     return G
   
   
-def visualize_graph(graph):
+def visualize_graph(graph : nx.DiGraph):
+    
+    # Show graph
     nx.draw_networkx(graph) 
     plt.show() 
