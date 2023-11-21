@@ -1,6 +1,8 @@
 *.sh
 *.csv
 .*
+codes
+frtt_env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
