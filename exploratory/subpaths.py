@@ -1,10 +1,11 @@
-from frtt.exploratory.tree_tools import *
+from collections import deque
+from typing import Union
 from frtt.utilities.types.tree_node import TreeNode
 from frtt.initial.initialize import initialize
 from frtt.static_analysis.parsing.abstract_syntax_tree import get_abstract_syntax_tree
-from frtt.exploratory.tree_consolidation import consolidate
-from collections import deque
-from typing import Union
+from tree_tools import *
+from tree_consolidation import consolidate
+
 
 
 def find_rooted_subpaths(trees, start_node):
