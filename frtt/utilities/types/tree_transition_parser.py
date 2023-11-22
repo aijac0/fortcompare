@@ -1,5 +1,5 @@
 from __future__ import annotations
-from frtt.utilities.types.tree_node import TreeNode
+from utilities.types.tree_node import TreeNode
 
 class TreeTransitionParser:
     """

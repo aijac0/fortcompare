@@ -1,8 +1,8 @@
-from frtt.utilities.types.generic import Program
-from frtt.static_analysis.resolution.module_resolution import resolve_modules
-from frtt.static_analysis.resolution.procedure_resolution import resolve_procedures
-from frtt.static_analysis.resolution.variable_resolution import resolve_variables
-from frtt.static_analysis.resolution.dependency_resolution import resolve_dependencies
+from utilities.types.generic import Program
+from static_analysis.resolution.module_resolution import resolve_modules
+from static_analysis.resolution.procedure_resolution import resolve_procedures
+from static_analysis.resolution.variable_resolution import resolve_variables
+from static_analysis.resolution.dependency_resolution import resolve_dependencies
 
 def resolution(program : Program):
     """

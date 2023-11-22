@@ -1,6 +1,6 @@
 import sys
-from frtt.initial import initial
-from frtt.static_analysis import static_analysis
+from initial import initial
+from static_analysis import static_analysis
 
 if __name__ == "__main__":
 

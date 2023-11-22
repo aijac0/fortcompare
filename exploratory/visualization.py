@@ -1,7 +1,7 @@
 import networkx as nx 
 import matplotlib.pyplot as plt 
 from collections import deque
-from frtt.utilities.types.tree_node import TreeNode
+from utilities.types.tree_node import TreeNode
 
 
 def create_graph(tree : TreeNode):

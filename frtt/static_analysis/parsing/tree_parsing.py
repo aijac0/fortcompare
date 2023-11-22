@@ -1,6 +1,6 @@
-from frtt.utilities.types.generic import ProgramUnit
-from frtt.utilities.types.tree_node import TreeNode
-from frtt.static_analysis.parsing.variable_parsing import parse_variables
+from utilities.types.generic import ProgramUnit
+from utilities.types.tree_node import TreeNode
+from static_analysis.parsing.variable_parsing import parse_variables
 
 def parse_program(tree : TreeNode) -> list[ProgramUnit]:
     """

@@ -1,4 +1,4 @@
-from frtt.initial.initialize import initialize
+from initial.initialize import initialize
 
 
 def initial(rootpath1 : str, rootpath2 : str):

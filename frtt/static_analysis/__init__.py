@@ -1,7 +1,7 @@
-from frtt.utilities.types.generic import Program
-from frtt.static_analysis.parsing import parsing
-from frtt.static_analysis.resolution import resolution
-from frtt.static_analysis.isomorphism import isomorphism
+from utilities.types.generic import Program
+from static_analysis.parsing import parsing
+from static_analysis.resolution import resolution
+from static_analysis.isomorphism import isomorphism
 
 def static_analysis(filepaths1 : list[str], filepaths2 : list[str]) -> tuple[Program, Program, dict]:
 

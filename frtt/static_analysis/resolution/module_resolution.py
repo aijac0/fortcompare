@@ -1,4 +1,4 @@
-from frtt.utilities.types.generic import Program, ProgramUnit
+from utilities.types.generic import Program, ProgramUnit
 
 def resolve_modules(program : Program):
     """
