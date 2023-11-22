@@ -1,6 +1,5 @@
-from frtt.static_analysis.parsing import abstract_syntax_tree as ast, tree_parsing as tp
-from frtt.utilities.types.tree_node import TreeNode
-from frtt.initial.initialize import initialize
+from static_analysis.parsing import abstract_syntax_tree as ast, tree_parsing as tp
+from utilities.types.tree_node import TreeNode
 
 def reconstruct_path(predecessors, new):
     path = [new]
