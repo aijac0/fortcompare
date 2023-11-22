@@ -1,10 +1,11 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 from git import Repo
-import os
+
 head_url = "https://fortran-lang.org/packages/"
 target_url = "https://github.com/"
-rootdir = "codes/"
+
 
 def scrape_code_urls():
     """
@@ -50,7 +51,7 @@ def scrape_code_urls():
     return urls
         
         
-def init_codes():
+def init_codes(rootdir : str):
     """
     Clone all repos mentioned on fortran-lang.org/packages to file
     """
@@ -63,12 +64,16 @@ def init_codes():
         
         # Absolute url and relative directory path
         repo_url = target_url + url
-        repo_dir = rootdir + url
+        repo_dir = rootdir + '/' + url
 
         # Clone repo if it does not exist on file
         if os.path.exists(repo_dir): continue
         os.makedirs(repo_dir)
         Repo.clone_from(repo_url, repo_dir)            
-            
+
+
 if __name__ == "__main__":
-    init_codes()
+    
+    # Initialize codes
+    rootdir = "codes"
+    init_codes(rootdir)
