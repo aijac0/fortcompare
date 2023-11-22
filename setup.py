@@ -6,5 +6,6 @@ setup(name='frtt',
       version='0.0',
       description='Fortran Regression Testing Tool',
       author='Aidan Collins',
-      author_email='aidancollinscs@gmail.com'
+      author_email='aidancollinscs@gmail.com',
+      package_dir={'':'frtt'}
      )
