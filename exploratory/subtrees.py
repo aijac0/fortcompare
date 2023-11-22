@@ -2,7 +2,7 @@ from collections import deque
 from typing import Union
 from static_analysis.parsing.abstract_syntax_tree import get_abstract_syntax_tree
 from utilities.types.tree_node import TreeNode
-from tree_tools import enumerate_tree_paths, enumerate_path_nodes
+from exploratory.tools import enumerate_tree_paths, enumerate_path_nodes
 from consolidation import consolidate
 
 
