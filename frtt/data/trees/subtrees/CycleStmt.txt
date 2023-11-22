@@ -1,4 +1,0 @@
-CycleStmt
-| Name
-| | ValueString
-| ExecutionPartConstruct

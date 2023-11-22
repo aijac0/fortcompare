@@ -1,4 +1,0 @@
-OpenStmt
-| ConnectSpec
-| | FileUnitNumber
-| | | Scalar

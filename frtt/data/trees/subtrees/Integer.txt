@@ -1,9 +1,0 @@
-Integer
-| Variable
-| | Designator
-| Name
-| | ValueString
-| Constant
-| | Designator
-| | Expr
-| Expr

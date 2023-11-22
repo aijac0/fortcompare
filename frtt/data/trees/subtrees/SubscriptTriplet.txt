@@ -1,2 +1,0 @@
-SubscriptTriplet
-| Scalar

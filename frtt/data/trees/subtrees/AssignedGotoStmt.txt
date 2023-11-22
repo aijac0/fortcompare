@@ -1,5 +1,0 @@
-AssignedGotoStmt
-| Name
-| | ValueString
-| uint64_t
-| | ValueString

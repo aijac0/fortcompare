@@ -1,6 +1,0 @@
-ComponentDecl
-| Name
-| | ValueString
-| Initialization
-| | NullInit
-| | | Expr

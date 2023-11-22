@@ -1,4 +1,0 @@
-NamelistStmt
-| Group
-| | Name
-| | | ValueString

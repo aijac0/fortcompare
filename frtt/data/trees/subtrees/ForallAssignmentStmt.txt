@@ -1,6 +1,0 @@
-ForallAssignmentStmt
-| AssignmentStmt
-| | Variable
-| | | Designator
-| | | FunctionReference
-| | Expr

@@ -1,5 +1,0 @@
-SavedEntity
-| Kind
-| | Entity
-| Name
-| | ValueString

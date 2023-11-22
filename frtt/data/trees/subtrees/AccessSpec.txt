@@ -1,4 +1,0 @@
-AccessSpec
-| Kind
-| | Public
-| | Private

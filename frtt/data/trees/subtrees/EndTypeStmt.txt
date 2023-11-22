@@ -1,3 +1,0 @@
-EndTypeStmt
-| Name
-| | ValueString

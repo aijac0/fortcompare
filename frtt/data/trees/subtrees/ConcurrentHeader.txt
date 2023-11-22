@@ -1,5 +1,0 @@
-ConcurrentHeader
-| ConcurrentControl
-| | Name
-| | | ValueString
-| | Scalar

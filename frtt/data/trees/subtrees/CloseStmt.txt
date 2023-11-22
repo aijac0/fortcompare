@@ -1,4 +1,0 @@
-CloseStmt
-| CloseSpec
-| | FileUnitNumber
-| | | Scalar

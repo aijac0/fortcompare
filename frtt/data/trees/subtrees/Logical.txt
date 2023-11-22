@@ -1,6 +1,0 @@
-Logical
-| Variable
-| | Designator
-| KindSelector
-| | Scalar
-| Expr

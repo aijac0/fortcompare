@@ -1,6 +1,0 @@
-PrintStmt
-| Format
-| | uint64_t
-| | | ValueString
-| | Star
-| OutputItem

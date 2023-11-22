@@ -1,4 +1,0 @@
-InterfaceStmt
-| GenericSpec
-| | Name
-| | | ValueString

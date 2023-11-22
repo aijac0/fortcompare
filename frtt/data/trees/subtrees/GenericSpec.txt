@@ -1,3 +1,0 @@
-GenericSpec
-| Name
-| | ValueString

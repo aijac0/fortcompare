@@ -1,4 +1,0 @@
-DataStmtRepeat
-| Scalar
-| IntLiteralConstant
-| | ValueString

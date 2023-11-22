@@ -1,4 +1,0 @@
-PointerObject
-| Name
-| | ValueString
-| StructureComponent

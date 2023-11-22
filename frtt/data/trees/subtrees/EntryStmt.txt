@@ -1,6 +1,0 @@
-EntryStmt
-| Name
-| | ValueString
-| DummyArg
-| | Name
-| | | ValueString

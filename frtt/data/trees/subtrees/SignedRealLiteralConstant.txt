@@ -1,5 +1,0 @@
-SignedRealLiteralConstant
-| Sign
-| RealLiteralConstant
-| | Real
-| | | ValueString

@@ -1,4 +1,0 @@
-EndInterfaceStmt
-| GenericSpec
-| | Name
-| | | ValueString

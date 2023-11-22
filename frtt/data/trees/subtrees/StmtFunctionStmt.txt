@@ -1,4 +1,0 @@
-StmtFunctionStmt
-| Name
-| | ValueString
-| Scalar

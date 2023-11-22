@@ -1,5 +1,0 @@
-Format
-| uint64_t
-| | ValueString
-| Expr
-| Star

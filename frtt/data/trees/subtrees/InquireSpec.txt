@@ -1,6 +1,0 @@
-InquireSpec
-| Scalar
-| LogVar
-| | Kind
-| | | Exist
-| | Scalar

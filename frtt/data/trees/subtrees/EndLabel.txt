@@ -1,3 +1,0 @@
-EndLabel
-| uint64_t
-| | ValueString

@@ -1,6 +1,0 @@
-CaseSelector
-| CaseValueRange
-| | Range
-| | | Scalar
-| | Scalar
-| Default

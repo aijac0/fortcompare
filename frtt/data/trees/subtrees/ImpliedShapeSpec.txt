@@ -1,2 +1,0 @@
-ImpliedShapeSpec
-| AssumedImpliedSpec

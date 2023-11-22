@@ -1,4 +1,0 @@
-InputImpliedDo
-| InputItem
-| LoopBounds
-| | Scalar

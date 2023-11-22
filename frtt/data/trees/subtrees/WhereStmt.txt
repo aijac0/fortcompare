@@ -1,7 +1,0 @@
-WhereStmt
-| Logical
-| | Expr
-| AssignmentStmt
-| | Variable
-| | | Designator
-| | Expr

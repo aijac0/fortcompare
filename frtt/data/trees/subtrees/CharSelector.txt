@@ -1,5 +1,0 @@
-CharSelector
-| LengthSelector
-| | TypeParamValue
-| | | Star
-| | | Scalar

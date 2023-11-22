@@ -1,8 +1,0 @@
-ComponentAttrSpec
-| ComponentArraySpec
-| | DeferredShapeSpecList
-| | | int
-| | ExplicitShapeSpec
-| | | SpecificationExpr
-| | | | Scalar
-| Pointer

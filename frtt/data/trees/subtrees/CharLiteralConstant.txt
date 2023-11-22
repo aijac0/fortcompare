@@ -1,3 +1,0 @@
-CharLiteralConstant
-| string
-| | ValueString

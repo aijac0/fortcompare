@@ -1,6 +1,0 @@
-LabelDoStmt
-| uint64_t
-| | ValueString
-| LoopControl
-| | LoopBounds
-| | | Scalar

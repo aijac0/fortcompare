@@ -1,8 +1,0 @@
-ArraySpec
-| ImpliedShapeSpec
-| | AssumedImpliedSpec
-| DeferredShapeSpecList
-| | int
-| ExplicitShapeSpec
-| | SpecificationExpr
-| | | Scalar

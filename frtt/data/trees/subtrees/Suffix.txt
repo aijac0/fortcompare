@@ -1,3 +1,0 @@
-Suffix
-| Name
-| | ValueString

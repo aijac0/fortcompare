@@ -1,3 +1,0 @@
-GotoStmt
-| uint64_t
-| | ValueString

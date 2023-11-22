@@ -1,4 +1,0 @@
-DataStmtObject
-| Variable
-| | FunctionReference
-| | Designator

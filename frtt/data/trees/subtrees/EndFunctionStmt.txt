@@ -1,3 +1,0 @@
-EndFunctionStmt
-| Name
-| | ValueString

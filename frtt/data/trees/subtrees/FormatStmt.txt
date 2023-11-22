@@ -1,3 +1,0 @@
-FormatStmt
-| FormatSpecification
-| | FormatItem

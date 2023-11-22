@@ -1,4 +1,0 @@
-Substring
-| DataRef
-| SubstringRange
-| | Scalar

@@ -1,6 +1,0 @@
-ImplicitSpec
-| DeclarationTypeSpec
-| | IntrinsicTypeSpec
-| | | DoublePrecision
-| LetterSpec
-| | char

@@ -1,3 +1,0 @@
-DerivedTypeSpec
-| Name
-| | ValueString

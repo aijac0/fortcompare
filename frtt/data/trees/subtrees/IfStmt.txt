@@ -1,3 +1,0 @@
-IfStmt
-| Scalar
-| ActionStmt

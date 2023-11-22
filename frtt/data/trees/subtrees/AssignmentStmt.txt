@@ -1,5 +1,0 @@
-AssignmentStmt
-| Variable
-| | FunctionReference
-| | Designator
-| Expr

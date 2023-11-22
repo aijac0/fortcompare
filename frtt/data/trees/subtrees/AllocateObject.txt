@@ -1,4 +1,0 @@
-AllocateObject
-| Name
-| | ValueString
-| StructureComponent

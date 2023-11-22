@@ -1,4 +1,0 @@
-Only
-| GenericSpec
-| | Name
-| | | ValueString

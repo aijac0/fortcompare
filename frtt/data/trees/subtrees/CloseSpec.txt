@@ -1,3 +1,0 @@
-CloseSpec
-| FileUnitNumber
-| | Scalar

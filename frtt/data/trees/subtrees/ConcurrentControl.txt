@@ -1,4 +1,0 @@
-ConcurrentControl
-| Name
-| | ValueString
-| Scalar

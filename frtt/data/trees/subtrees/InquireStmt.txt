@@ -1,3 +1,0 @@
-InquireStmt
-| InquireSpec
-| | Scalar

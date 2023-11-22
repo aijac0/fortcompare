@@ -1,6 +1,0 @@
-CharExpr
-| Kind
-| | Position
-| | Form
-| | Access
-| Scalar

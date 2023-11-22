@@ -1,7 +1,0 @@
-Real
-| KindSelector
-| | Scalar
-| | StarSize
-| | | uint64_t
-| | | | ValueString
-| ValueString

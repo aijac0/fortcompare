@@ -1,3 +1,0 @@
-AcImpliedDoControl
-| LoopBounds
-| | Scalar
