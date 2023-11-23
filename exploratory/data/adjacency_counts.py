@@ -82,3 +82,62 @@ def __get_adjacency_counts(trees : Iterable[TreeNode]):
                     counts[curr.name][node] = (min(count, mn), max(count, mx))
                     
     return counts
+
+
+def read_adjacency_counts(data_rootdir : str):
+    """
+    Read adjacency counts from file
+    """
+    
+    # Dictionary containing min/max counts
+    adj_counts = dict()
+    
+    # Open file
+    f = open(data_rootdir + '/' + "adjacency_counts.txt", 'r')
+    
+    # Iterate over each line in file
+    for line in f.readlines():
+    
+        # Parse line for adjacency count
+        node1, node2, mn_str, mx_str = line.split(' ')
+        mn = int(mn_str)
+        mx = int(mx_str)
+        
+        # Add adjacency count to dict
+        if node1 not in adj_counts:
+            adj_counts[node1] = dict()
+        adj_counts[node1][node2] = (mn, mx)
+    
+    # Close file
+    f.close()
+    
+    return adj_counts
+
+
+def read_adjacencies(data_rootdir : str):
+    """
+    Read adjacency lists from file
+    """
+    
+    # Dictionary containing adjacency lists
+    adj_lists = dict()
+    
+    # Open file
+    f = open(data_rootdir + '/' + "adjacency_counts.txt", 'r')
+    
+    # Iterate over each line in file
+    for line in f.readlines():
+    
+        # Parse line for adjacency
+        node1, node2, _, _ = line.split(' ')
+        
+        # Add adjacency to dict
+        if node1 not in adj_lists:
+            adj_lists[node1] = [node2]
+        else:
+            adj_lists[node1].append(node2)
+    
+    # Close file
+    f.close()
+    
+    return adj_lists

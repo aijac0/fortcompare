@@ -94,3 +94,27 @@ def __get_path_counts(trees : Iterable[TreeNode]):
                 stack.extend(curr.children)
                     
     return counts
+
+
+def read_path_counts(data_rootdir : str):
+    """
+    Read path counts from file
+    """
+    
+    # List of nodes and dictionary containing min/max counts
+    path_counts = dict()
+    
+    # Open file
+    f = open(data_rootdir + '/' + "path_counts.txt", 'w')
+    
+    # Iterate over each line in file
+    for line in f.readlines():
+    
+        # Parse line for path count
+        node, mn, mx = line.split(' ')
+        
+        # Add adjacency to dict
+        path_counts[node] = (mn, mx)
+    
+    # Close file
+    f.close()
