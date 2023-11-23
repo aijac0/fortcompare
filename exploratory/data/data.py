@@ -2,7 +2,8 @@ from typing import Iterable
 from initial.initialize import initialize
 from static_analysis.parsing.abstract_syntax_tree import get_abstract_syntax_tree
 from utilities.types.tree_node import TreeNode
-from exploratory.data.adjacency_counts import write_adjacency_counts
+from exploratory.data.edge_counts import write_edge_counts
+from exploratory.data.adjacent_counts import write_adjacent_counts
 from exploratory.data.path_counts import write_path_counts
 
 
@@ -25,8 +26,11 @@ def write_data(trees : Iterable[TreeNode], data_rootdir : str):
     Run all data writing routines
     """
     
-    # Get and write adjacency counts
-    write_adjacency_counts(trees, data_rootdir)
+    # Get and write edge counts
+    write_edge_counts(trees, data_rootdir)
+    
+    # Get and write adjacent counts
+    write_adjacent_counts(trees, data_rootdir)
     
     # Get and write path counts
     write_path_counts(trees, data_rootdir)
