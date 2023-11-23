@@ -35,8 +35,8 @@ def __get_path_counts(trees : Iterable[TreeNode]):
     For each distinct node n, write the following:
     1. Minimum number of times n appears on a path for which it appears at least once 
     2. Maximum number of times n appears on a path for which it appears at least once
-    Return dictionary mapping n -> (min, max)
-    Mapping will have an entry (n -> ...) for all n
+    Return dictionary mapping (n -> (min, max))
+    Mapping will have an entry (n -> (min, max)) for all n
     """
     
     # Initialize dictionary containing min/max counts
@@ -67,10 +67,10 @@ def __get_path_counts(trees : Iterable[TreeNode]):
                 # Number of times each node appears on path
                 temp_counts = dict()
                 
-                # Iterate over path
+                # Iterate over each node in path
                 for node in path:
                     
-                    # Add 1 to count
+                    # Increment count
                     if node not in temp_counts:
                         temp_counts[node] = 1
                     else:   
