@@ -1,34 +1,62 @@
+from typing import Iterable
+from collections import deque
 from static_analysis.parsing import abstract_syntax_tree as ast, tree_parsing as tp
 from utilities.types.tree_node import TreeNode
 
 
-def enumerate_tree_paths(tree : TreeNode):
+def enumerate_tree_paths(trees : Iterable[TreeNode]):
     """
-    Generator that yields each path from root to leaf
-    Each path is linear (each node along path has 0 or 1 children)
-    If tree is consolidated (see consolidation.py) each path will be distinct
+    Generator that enumerates each path from root to node in set of trees
+    Each path is a list of identifiers
     """
     
-    # DFS storing path to current node
-    stack = [(tree, ())]
+    # Initialize stack with depth
+    stack = deque((0, tree) for tree in trees)
+    
+    # Initialize path
+    maxlen = 32
+    path = deque(maxlen=maxlen)
+    
+    # Initialize previous depth
+    prev_depth = 0
+    
+    # DFS
     while stack:
-        curr, prev_path = stack.pop()
-        curr_name = curr.name
-        curr_path = prev_path + (curr_name,)
         
-        # Create and output path if node is a leaf
-        if not curr.children:
-            head = TreeNode(curr_path[0])
-            prev = head
-            for curr_name in curr_path[1:]:
-                curr = TreeNode(curr_name)
-                prev.children.append(curr)
-                prev = curr
-            yield head
+        # Get current entry from stack
+        curr_depth, curr = stack.pop()
+        
+        # Backtrack path
+        if prev_depth > curr_depth:
+            diff = prev_depth - curr_depth
+            path = path[:-diff]
             
-        # Traverse children
+        # Proceed along path
         else:
-            stack.extend([(next, curr_path) for next in curr.children])
+            
+            # Increase maximum size of path
+            if len(path) == maxlen:
+                maxlen *= 2
+                path = deque(path, maxlen=maxlen)
+                
+            # Add current node to path
+            path.append(curr.name)
+            
+        # Current node is a leaf node
+        if not curr.children:
+            yield path
+            
+        # Current node is an internal node
+        else:
+            
+            # Add entries to stack
+            next_depth = curr_depth + 1
+            for next in curr.children:
+                stack.append((next_depth, next))
+        
+        # Update depth
+        prev_depth = curr_depth
+            
             
             
 def enumerate_path_nodes(path : TreeNode):
