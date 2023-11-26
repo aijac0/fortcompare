@@ -1,93 +1,117 @@
 from __future__ import annotations
-from typing import Type
-from abc import ABC, abstractmethod, abstractproperty
+from abc import ABC, abstractproperty, abstractmethod
+from typing import Type, Iterable, Mapping, Callable, Self
+from numpy import ndarray as np_ndarray, empty as np_empty
+from subclassable import Subclassable
+from base_containers import ArgumentList, AbstractContainer
 
 
 """
-Mock constructor
-Returns the constructor of the superclass of the class that self belongs to with *args passed
+List of nodes belonging to the same node class
+Defines a 'parse' method to combine the results of calling 'parse' on each node into a single list
 """
-def constructor(*args):
-    def inner(self):
-        self.__class__.__base__.__init__(self, *args)
-    return inner
+class AdjacencyList(list):
+    
+    def __init__(self, node_cls : Type[AbstractNode]):
+        list.__init__(self)
+        self.node_cls = node_cls        
+    
+    def parse(self) -> ArgumentList:
+        return ArgumentList.combine(self.node_cls.datacls, *(adj.parse() for adj in self))
+
 
 """
 Abstract node
+Supports an arbitrary number of adjacent nodes grouped together based on their membership to an arbitrary set of classes
+Supports the 'add_adj' method to add a new node to the group of adjacent nodes belonging to the same class
+Supports an arbitrary 'parse' method to create objects from an arbitrary class
+Descendent classes will define the 'adj_classes' property to restrict the set of classes of adjacent nodes
+Descendent classes will define the 'datacls' property to define the class of objects created by the 'parse' method
+Descendent classes will define the 'parse' method to instantiate members of the class specified by the 'datacls' property
 """
-class Node(ABC):
-    @property
-    def adj(self):
-        return list(self.adj_gen)
-    @property
-    def adj_gen(self):
-        for adj_gen in self.adj_gens:
-            for c in adj_gen:
-                yield c
-    @abstractproperty
-    def adj_gens(self):
-        pass
-    @abstractmethod
-    def add_adj(self, node : Node):
-        pass
+class AbstractNode(ABC):
         
-"""
-Node with no children
-"""
-class LeafNode(Node):
-    @property
-    def adj_gen(self):
-        return iter(())
-    def add_adj(self, node : Node):
-        return False
-    
-
-"""
-Node with a single child from a variable number of classes
-"""
-class SelectorNode(Node):
-
-    def __init__(self, *args : Type[Node]):
-        self.c = None
-        self.cls_map = dict()
-        
-        # Add classes to class map
-        for i in range(len(args)):
-            self.cls_map[args[i]] = i
+    def __init__(self):
+        self.adj : np_ndarray[AdjacencyList[Node]] = np_empty(len(self.adj_classes), dtype=AdjacencyList)
+        for adj_cls, idx in self.adj_classes.items(): self.adj[idx] = AdjacencyList(adj_cls)
             
-    @property
-    def adj_gen(self):
-        if self.c: yield self.c
-        
-    def add_adj(self, node: Node):
-        if node.__class__ in self.cls_map:
-            self.c = node
-            return True
-        return False
+    @abstractproperty
+    def adj_classes(self) -> Mapping[Type[Node], int]:
+        pass
     
-"""
-Node with a variable number of children from a variable number of classes
-"""
-class MultiNode(Node):
-    
-    def __init__(self, *args : Type[Node]):
-        self.cs = list()
-        self.cls_map = dict()
-        
-        # Add classes to class map
-        for i in range(len(args)):
-            self.cls_map[args[i]] = i
-            self.cs.append(list())
-        
-    @property
-    def adj_gen(self):
-        for ci in self.cs:
-            for c in ci:
-                yield c
-        
+    @abstractproperty
+    def datacls(self) -> Type[AbstractContainer]:
+        pass
+
+    @abstractmethod
+    def parse(self) -> Iterable[AbstractContainer]:
+        pass
+
     def add_adj(self, node : Node):
-        if node.__class__ in self.cls_map:
-            idx = self.cls_map[node.__class__]
-            self.cs[idx].append(node)
-            return True
-        return False
+        idx = self.adj_classes[node.__class__]
+        self.adj[idx].append(node)
+
+
+"""
+Abstract node
+Defines the 'parse' method to instantiate members of the class specified by the 'datacls' property
+using the objects recursively parsed from the adjacent nodes
+Defers the definition of the 'adj_classes' property to descendent classes
+Defers the definition of the 'datacls' property to descendent classes
+Non-abstract subclasses can be created using the 'create_subclass' class method
+"""    
+class Node(AbstractNode, Subclassable, ABC):
+    
+    def __init__(self):
+        AbstractNode.__init__(self)
+    
+    def parse(self) -> ArgumentList:
+        args = [self.adj[idx].parse() for idx in self.adj_classes.values()]
+        return self.datacls.create_all(*args)
+    
+    @classmethod
+    def create_subclass(cls, clsname : str, datacls : Type[AbstractContainer], *adj_classes : Type[Node]) -> Type[AbstractNode]:
+        clsdict = {
+            "__init__" : cls.__init__,
+            "adj_classes" : {adj_classes[i] : i for i in range(len(adj_classes))},
+            "datacls" : datacls
+        }
+        return type(clsname, (cls,), clsdict)
+
+
+"""
+Abstract node
+Defers the definition of the 'adj_classes' property to descendent classes
+Defers the definition of the 'datacls' property to descendent classes
+Defers the definition of the 'parse' method to descendent classes
+Non-abstract subclasses can be created using the 'create_subclass' class method
+"""
+class ElementaryNode(AbstractNode, Subclassable, ABC):
+    
+    def __init__(self):
+        AbstractNode.__init__(self)
+    
+    @classmethod
+    def create_subclass(cls, clsname : str, datacls : Type, parse : Callable[[Self], ArgumentList], *adj_classes : Type[Node]) -> Type[AbstractNode]:
+        clsdict = {
+            "__init__" : cls.__init__,
+            "adj_classes" : {adj_classes[i] : i for i in range(len(adj_classes))},
+            "datacls" : datacls,
+            "parse" : parse,
+        }
+        return type(clsname, (cls,), clsdict)
+    
+
+"""
+Abstract node 
+Supports a string literal attribute
+Defers the definition of the 'adj_classes' property to descendent classes
+Defers the definition of the 'datacls' property to descendent classes
+Defers the definition of the 'parse' method to descendent classes
+Non-abstract subclasses can be created using the 'create_subclass' class method
+"""
+class ValueNode(ElementaryNode, ABC):
+    
+    def __init__(self, val : str):
+        ElementaryNode.__init__(self)
+        self.val : str = val
