@@ -1,17 +1,47 @@
-from typing import Iterable
-from collections import deque
+from typing import Iterable, Mapping, Hashable
+from collections import OrderedDict, Counter
 from utilities.types.tree_node import TreeNode
+from exploratory.tools import enumerate_tree_paths
 
-
-def write_path_counts(trees : Iterable[TreeNode], data_rootdir : str):
+def get_path_counts(trees : Iterable[TreeNode]):
     """
-    For each distinct node n, write the following:
+    For each distinct node n, get the following:
     1. Minimum number of times n appears on a path for which it appears at least once 
     2. Maximum number of times n appears on a path for which it appears at least once
+    Return dictionary mapping (n -> (min, max))
+    Mapping will have an entry (n -> (min, max)) for all n
     """
     
-    # List of nodes and dictionary containing min/max counts
-    path_counts = __get_path_counts(trees)
+    # Initialize dictionary containing min/max counts
+    path_counts = OrderedDict()
+    
+    # Enumerate paths from root to leaf in all trees
+    for path in enumerate_tree_paths(trees):
+        
+        # Initialize dict with number of times each node appears on path
+        node_counts = Counter()
+        
+        # Iterate over each node in path
+        for node in path:
+            
+            # Increment node count
+            node_counts(node)
+        
+        # Update path counts
+        for node, count in node_counts.total():
+            if node not in path_counts:
+                path_counts[node] = (count, count)
+            else:
+                mn, mx = path_counts[node]
+                path_counts[node] = (min(count, mn), max(count, mx))
+                    
+    return path_counts
+
+
+def write_path_counts(path_counts : Mapping[Hashable, tuple[int, int]], data_rootdir : str):
+    """
+    Write path counts to file
+    """
     
     # Open file
     f = open(data_rootdir + '/' + "path_counts.txt", 'w')
@@ -30,82 +60,16 @@ def write_path_counts(trees : Iterable[TreeNode], data_rootdir : str):
     f.close()
 
 
-def __get_path_counts(trees : Iterable[TreeNode]):
-    """
-    For each distinct node n, write the following:
-    1. Minimum number of times n appears on a path for which it appears at least once 
-    2. Maximum number of times n appears on a path for which it appears at least once
-    Return dictionary mapping (n -> (min, max))
-    Mapping will have an entry (n -> (min, max)) for all n
-    """
-    
-    # Initialize dictionary containing min/max counts
-    counts = dict()
-    
-    # Iterate over each tree
-    for tree in trees:
-        
-        # Initialize stack
-        stack = deque()
-        stack.append(tree)
-
-        # Initialize path
-        path = deque()
-        
-        # DFS
-        while stack:
-            
-            # Get current node from stack
-            curr = stack.pop()
-            
-            # Add current node to path
-            path.append(curr.name)
-            
-            # Curr is a leaf node
-            if not curr.children:
-                
-                # Number of times each node appears on path
-                temp_counts = dict()
-                
-                # Iterate over each node in path
-                for node in path:
-                    
-                    # Increment count
-                    if node not in temp_counts:
-                        temp_counts[node] = 1
-                    else:   
-                        temp_counts[node] += 1
-                
-                # Update counts
-                for node, count in temp_counts.items():
-                    if node not in counts:
-                        counts[node] = (count, count)
-                    else:
-                        mn, mx = counts[node]
-                        counts[node] = (min(count, mn), max(count, mx))
-                        
-                # Remove last node from path (DFS will backtrack because curr is a leaf node)
-                path.pop()
-                
-            # Curr is an internal node
-            else:
-                
-                # Add each child to stack
-                stack.extend(curr.children)
-                    
-    return counts
-
-
 def read_path_counts(data_rootdir : str):
     """
     Read path counts from file
     """
     
     # List of nodes and dictionary containing min/max counts
-    path_counts = dict()
+    path_counts = OrderedDict()
     
     # Open file
-    f = open(data_rootdir + '/' + "path_counts.txt", 'w')
+    f = open(data_rootdir + '/' + "path_counts.txt", 'r')
     
     # Iterate over each line in file
     for line in f.readlines():
@@ -118,3 +82,17 @@ def read_path_counts(data_rootdir : str):
     
     # Close file
     f.close()
+    
+    
+def init_path_counts(trees : Iterable[TreeNode], data_rootdir : str):
+    """
+    Get and write path counts to file
+    """
+    
+    # Get path counts
+    path_counts = get_path_counts(trees)
+    
+    # Write path counts
+    write_path_counts(path_counts, data_rootdir)
+    
+    return path_counts

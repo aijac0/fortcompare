@@ -1,17 +1,58 @@
-from typing import Iterable
-from collections import deque
+from typing import Iterable, Mapping, Hashable
+from collections import deque, OrderedDict, Counter
 from utilities.types.tree_node import TreeNode
 
 
-def write_edge_counts(trees : Iterable[TreeNode], data_rootdir : str):
+def get_edge_counts(trees : Iterable[TreeNode]):
     """
-    For each distinct edge (n1, n2), write the following:
+    For each distinct edge (n1, n2), get the following:
     1. Minimum number of times edge appears for any instance of n1
     2. Maximum number of times edge appears for any instance of n1
+    Mapping will have an entry (n1 -> ... -> (min, max)) for all n1
+    Mapping may not have an entry (n1 -> n2 -> (min, max)) for all n1 for all n2
     """
     
-    # Dictionary containing min/max counts
-    edge_counts = __get_edge_counts(trees)
+    # Initialize dictionary containing min/max counts
+    counts = OrderedDict()
+        
+    # Initialize stack
+    stack = deque(trees)
+    
+    # DFS
+    while stack:
+        
+        # Get current node from stack
+        curr = stack.pop()
+        if curr.name not in counts: 
+            counts[curr.name] = OrderedDict()
+        
+        # Number of times each node is a child
+        temp_counts = Counter()
+        
+        # Iterate over each child
+        for next in curr.children:
+            
+            # Increment count
+            temp_counts(next)
+            
+            # Add child to stack
+            stack.append(next)
+            
+        # Update counts
+        for node, count in temp_counts.total():
+            if node not in counts[curr.name]: 
+                counts[curr.name][node] = (count, count)
+            else: 
+                mn, mx = counts[curr.name][node]
+                counts[curr.name][node] = (min(count, mn), max(count, mx))
+                    
+    return counts
+
+
+def write_edge_counts(edge_counts : Mapping[Hashable, Mapping[str, tuple[int, int]]], data_rootdir : str):
+    """
+    Write edge counts to file
+    """
     
     # Open file
     f = open(data_rootdir + '/' + "edge_counts.txt", 'w')
@@ -31,62 +72,13 @@ def write_edge_counts(trees : Iterable[TreeNode], data_rootdir : str):
     f.close()
 
 
-def __get_edge_counts(trees : Iterable[TreeNode]):
-    """
-    For each distinct edge (n1, n2), write the following:
-    1. Minimum number of times edge appears for any instance of n1
-    2. Maximum number of times edge appears for any instance of n1
-    Mapping will have an entry (n1 -> ... -> (min, max)) for all n1
-    Mapping may not have an entry (n1 -> n2 -> (min, max)) for all n1 for all n2
-    """
-    
-    # Initialize dictionary containing min/max counts
-    counts = dict()
-        
-    # Initialize stack
-    stack = deque(trees)
-    
-    # DFS
-    while stack:
-        
-        # Get current node from stack
-        curr = stack.pop()
-        if curr.name not in counts: 
-            counts[curr.name] = dict()
-        
-        # Number of times each node is a child
-        temp_counts = dict()
-        
-        # Iterate over each child
-        for next in curr.children:
-            
-            # Increment count
-            if next.name not in temp_counts: 
-                temp_counts[next.name] = 1
-            else:
-                temp_counts[next.name] += 1
-            
-            # Add child to stack
-            stack.append(next)
-            
-        # Update counts
-        for node, count in temp_counts.items():
-            if node not in counts[curr.name]: 
-                counts[curr.name][node] = (count, count)
-            else: 
-                mn, mx = counts[curr.name][node]
-                counts[curr.name][node] = (min(count, mn), max(count, mx))
-                    
-    return counts
-
-
 def read_edge_counts(data_rootdir : str):
     """
     Read edge counts from file
     """
     
     # Dictionary containing min/max counts
-    edge_counts = dict()
+    edge_counts = OrderedDict()
     
     # Open file
     f = open(data_rootdir + '/' + "edge_counts.txt", 'r')
@@ -101,7 +93,7 @@ def read_edge_counts(data_rootdir : str):
         
         # Add edge count to dict
         if node1 not in edge_counts:
-            edge_counts[node1] = dict()
+            edge_counts[node1] = OrderedDict()
         edge_counts[node1][node2] = (mn, mx)
     
     # Close file
@@ -112,11 +104,11 @@ def read_edge_counts(data_rootdir : str):
 
 def read_edges(data_rootdir : str):
     """
-    Read edge lists from file
+    Read edges from file
     """
     
     # Dictionary containing edge lists
-    edge_lists = dict()
+    edge_lists = OrderedDict()
     
     # Open file
     f = open(data_rootdir + '/' + "edge_counts.txt", 'r')
@@ -137,3 +129,17 @@ def read_edges(data_rootdir : str):
     f.close()
     
     return edge_lists
+
+
+def init_edge_counts(trees : Iterable[TreeNode], data_rootdir : str):
+    """
+    Get and write edge counts to file
+    """
+    
+    # Get edge counts
+    edge_counts = get_edge_counts(trees)
+    
+    # Write edge counts
+    write_edge_counts(edge_counts, data_rootdir)
+    
+    return edge_counts
